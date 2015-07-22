@@ -11,10 +11,10 @@ import net.minecraft.world.World;
 
 public class ItemResource extends ItemModSubs {
 
-	public static final int DOUGH = 0, DUST_MEAT = 1, INGOT_MEAT = 2, GEAR_ALCHEM = 3, GEAR_CATAL = 4, GEAR_MITHRIL = 5, GEAR_QS = 6, GEAR_MEAT = 7; 
+	public static final int DOUGH = 0, DUST_MEAT = 1, INGOT_MEAT = 2, GEAR_ALCHEM = 3, GEAR_CATAL = 4, GEAR_MITHRIL = 5, GEAR_QS = 6, GEAR_MEAT = 7, BOTTLE_MS = 8; 
 	
 	public ItemResource() {
-		super(8);
+		super(9);
 		setUnlocalizedName(ItemConstants.RESOURCE_ITEM_NAME);
 	}
 	
@@ -25,6 +25,9 @@ public class ItemResource extends ItemModSubs {
 		if (food.getItemDamage() == GEAR_MEAT) {
 			world.playSoundAtEntity(player, "mob.zombie.metal", 0.5F, world.rand.nextFloat() * 0.1F + 0.55F);
 			player.attackEntityFrom(DamageSource.cactus, 1.0F);
+		}
+		if (food.getItemDamage() == BOTTLE_MS) {
+			doMoonshineStuff(player);
 		}
 		food.stackSize--;
 		return food;
@@ -42,6 +45,8 @@ public class ItemResource extends ItemModSubs {
 		case INGOT_MEAT:
 		case GEAR_MEAT:
 			return EnumAction.eat;
+		case BOTTLE_MS:
+			return EnumAction.drink;
 		default:
 			return EnumAction.none;
 		}
@@ -49,7 +54,7 @@ public class ItemResource extends ItemModSubs {
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (player.canEat(false) && getItemUseAction(stack) == EnumAction.eat)
+		if ((player.canEat(false) && getItemUseAction(stack) == EnumAction.eat) || getItemUseAction(stack) == EnumAction.drink)
 			player.setItemInUse(stack, getMaxItemUseDuration(stack));
 		return stack;
 	}
@@ -85,9 +90,15 @@ public class ItemResource extends ItemModSubs {
 		switch (stack.getItemDamage()) {
 		case GEAR_QS:
 			return EnumRarity.uncommon;
+		case BOTTLE_MS:
+			return EnumRarity.rare;
 		default:
 			return EnumRarity.common;
 		}
+	}
+	
+	public static void doMoonshineStuff(EntityPlayer player) {
+		
 	}
 
 }

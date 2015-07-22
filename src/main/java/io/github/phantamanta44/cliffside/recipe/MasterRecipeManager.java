@@ -101,6 +101,9 @@ public class MasterRecipeManager {
 		// Conductive frame
 		addOreDictRecipe(new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME), "mgm", "grg", "mgm", 'm', "ingotMithril", 'g', "blockGlass", 'r', "gearAlchemical");
 		
+		// Quicksilver glass
+		addOreDictRecipe(new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.QS_GLASS), " q ", "qgq", " q ", 'g', "blockGlass", 'q', "nuggetQuicksilver");
+		
 		// Alchemical burner
 		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.ALCHEM_BURNER), "aaa", "gng", "afa", 'a', "ingotAlchemical", 'g', "ingotGold", 'n', new ItemStack(CSBlocks.gsNodeBasic), 'f', new ItemStack(Blocks.furnace));
 		
@@ -115,6 +118,12 @@ public class MasterRecipeManager {
 		
 		// Advanced burner
 		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.ADV_BURNER), "olo", "gfg", "aba", 'a', "ingotAlchemical", 'l', new ItemStack(Items.lava_bucket), 'o', new ItemStack(Blocks.obsidian), 'g', "gearQuicksilver", 'b', new ItemStack(CSBlocks.machine, 1, BlockMachine.ALCHEM_BURNER), 'f', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME));
+		
+		// Leyline aggregator
+		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.LEYLINE_AGGRO), "ccc", "gfg", "cmc", 'c', "ingotCatalyst", 'g', "gearMithril", 'm', new ItemStack(Items.bucket), 'f', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME));
+		
+		// Lunar distillery
+		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.LUNA_DISTILL), "olo", "gfg", "ccc", 'o', new ItemStack(Blocks.obsidian), 'l', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.QS_GLASS), 'g', "gearQuicksilver", 'f', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME), 'c', "ingotQuicksilver");
 		
 		IngotRecipeHandler.registerRecipes();
 		StorageBlockRecipeHandler.registerRecipes();

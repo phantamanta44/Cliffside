@@ -15,11 +15,14 @@ tile.csalchemy:alchemical0.name=Alchemical Glowstone
 tile.csalchemy:alchemical1.name=Catalytic Crystal
 tile.csalchemy:alchemical2.name=Energized Nintendium Mixture
 tile.csalchemy:alchemical3.name=Conductive Frame
+tile.csalchemy:alchemical4.name=Quicksilver Coated Glass
 tile.csalchemy:machine0.name=Alchemical Burner
 tile.csalchemy:machine1.name=Glowstone Energizer
 tile.csalchemy:machine2.name=Catalytical Disintegrator
 tile.csalchemy:machine3.name=Alchemical Smelter
 tile.csalchemy:machine4.name=Advanced Alchemical Burner
+tile.csalchemy:machine5.name=Leyline Aggregator
+tile.csalchemy:machine6.name=Lunar Distillery
 tile.csalchemy:ore0.name=Mithril Ore
 tile.csalchemy:ore1.name=Silver Ore
 
@@ -133,6 +136,7 @@ item.csalchemy:matResource4.name=Catalytical Gear
 item.csalchemy:matResource5.name=Mithril Gear
 item.csalchemy:matResource6.name=Quicksilver Gear
 item.csalchemy:matResource7.name=Meat Gear
+item.csalchemy:matResource8.name=Bottle of Moonshine
 item.csalchemy:wrench0.name=Alchemists' Wrench
 item.csalchemy:wrench1.name=Staff of Debugging
 item.csalchemy:wrench2.name=Illumination Reader
@@ -154,11 +158,10 @@ item.csalchemy:nintChestplate.name=Nintendium Chestplate
 item.csalchemy:nintLeggings.name=Nintendium Leggings
 item.csalchemy:nintBoots.name=Nintendium Boots
 
-csalchemy.tile.alchemBurner=Alchemical Burner
-
-csalchemy.container.disintegrator=Disintegrator
+csalchemy.container.disintegrator=Catalytical Disintegrator
 csalchemy.container.alchemBurner=Alchemical Burner
-csalchemy.container.smelter=Smelter
+csalchemy.container.smelter=Alchemical Smelter
+csalchemy.container.lunarDistillery=Lunar Distillery
 
 csalchemy.itemdesc.zfg0="No, no, no, no," said the speedrunner,
 csalchemy.itemdesc.zfg1=as he realized his last-second mistake.

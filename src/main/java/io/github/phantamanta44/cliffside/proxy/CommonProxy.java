@@ -5,6 +5,7 @@ import io.github.phantamanta44.cliffside.block.BlockOre;
 import io.github.phantamanta44.cliffside.block.CSBlocks;
 import io.github.phantamanta44.cliffside.gui.container.GuiAlchemicalBurner;
 import io.github.phantamanta44.cliffside.gui.container.GuiDisintegrator;
+import io.github.phantamanta44.cliffside.gui.container.GuiLunarDistillery;
 import io.github.phantamanta44.cliffside.gui.container.GuiSmelter;
 import io.github.phantamanta44.cliffside.handler.ExplosiveEnergizationHandler;
 import io.github.phantamanta44.cliffside.handler.GuiHandler;
@@ -13,6 +14,7 @@ import io.github.phantamanta44.cliffside.handler.WrenchHandler;
 import io.github.phantamanta44.cliffside.handler.ZfgBootHandler;
 import io.github.phantamanta44.cliffside.inventory.ContainerAlchemicalBurner;
 import io.github.phantamanta44.cliffside.inventory.ContainerDisintegrator;
+import io.github.phantamanta44.cliffside.inventory.ContainerLunarDistillery;
 import io.github.phantamanta44.cliffside.inventory.ContainerSmelter;
 import io.github.phantamanta44.cliffside.item.CSItems;
 import io.github.phantamanta44.cliffside.recipe.MasterRecipeManager;
@@ -22,6 +24,7 @@ import io.github.phantamanta44.cliffside.tile.TileDisintegrator;
 import io.github.phantamanta44.cliffside.tile.TileGlowstoneEnergizer;
 import io.github.phantamanta44.cliffside.tile.TileGlowstoneNode;
 import io.github.phantamanta44.cliffside.tile.TileGlowstoneStorage;
+import io.github.phantamanta44.cliffside.tile.TileLunarDistillery;
 import io.github.phantamanta44.cliffside.tile.TileSmelter;
 import io.github.phantamanta44.cliffside.util.BlockWithMeta;
 import io.github.phantamanta44.cliffside.worldgen.WorldGenSimple;
@@ -62,6 +65,7 @@ public class CommonProxy {
 		registerGui(TileDisintegrator.class, ContainerDisintegrator.class, GuiDisintegrator.class);
 		registerGui(TileAlchemicalBurner.class, ContainerAlchemicalBurner.class, GuiAlchemicalBurner.class);
 		registerGui(TileSmelter.class, ContainerSmelter.class, GuiSmelter.class);
+		registerGui(TileLunarDistillery.class, ContainerLunarDistillery.class, GuiLunarDistillery.class);
 	}
 	
 	private void registerGui(Class c, Class serverSide, Class clientSide) {
@@ -77,6 +81,7 @@ public class CommonProxy {
 		addTEMapping(TileGlowstoneNode.class);
 		addTEMapping(TileGlowstoneStorage.class);
 		addTEMapping(TileSmelter.class);
+		addTEMapping(TileLunarDistillery.class);
 	}
 	
 	private void addTEMapping(Class c) {

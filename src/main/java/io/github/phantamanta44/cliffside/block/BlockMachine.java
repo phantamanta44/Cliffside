@@ -7,6 +7,8 @@ import io.github.phantamanta44.cliffside.constant.IconHelper;
 import io.github.phantamanta44.cliffside.tile.TileAlchemicalBurner;
 import io.github.phantamanta44.cliffside.tile.TileDisintegrator;
 import io.github.phantamanta44.cliffside.tile.TileGlowstoneEnergizer;
+import io.github.phantamanta44.cliffside.tile.TileLeylineAggregator;
+import io.github.phantamanta44.cliffside.tile.TileLunarDistillery;
 import io.github.phantamanta44.cliffside.tile.TileSmelter;
 import io.github.phantamanta44.cliffside.tile.base.IActiveMachine;
 import io.github.phantamanta44.cliffside.tile.base.IDirectional;
@@ -26,10 +28,10 @@ import net.minecraft.world.World;
 
 public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 
-	public static final int ALCHEM_BURNER = 0, ENERGIZER = 1, DISINTEGRATOR = 2, SMELTER = 3, ADV_BURNER = 4;
+	public static final int ALCHEM_BURNER = 0, ENERGIZER = 1, DISINTEGRATOR = 2, SMELTER = 3, ADV_BURNER = 4, LEYLINE_AGGRO = 5, LUNA_DISTILL = 6;
 	
 	public BlockMachine() {
-		super(Material.iron, 5);
+		super(Material.iron, 7);
 		setHardness(5F);
 		setResistance(10F);
 		setBlockName(BlockConstants.ALCHEM_MACHINE_NAME);
@@ -92,6 +94,10 @@ public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 			return new TileSmelter();
 		case ADV_BURNER:
 			return new TileAlchemicalBurner(72);
+		case LEYLINE_AGGRO:
+			return new TileLeylineAggregator();
+		case LUNA_DISTILL:
+			return new TileLunarDistillery();
 		}
 		return null;
 	}
@@ -148,6 +154,7 @@ public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 			case DISINTEGRATOR:
 			case SMELTER:
 			case ADV_BURNER:
+			case LUNA_DISTILL:
 				player.openGui(ModCliffside.instance, 420, world, x, y, z);
 				break;
 			}
