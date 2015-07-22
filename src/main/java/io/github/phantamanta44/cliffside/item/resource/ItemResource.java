@@ -49,7 +49,7 @@ public class ItemResource extends ItemModSubs {
 	
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (player.canEat(false))
+		if (player.canEat(false) && getItemUseAction(stack) == EnumAction.eat)
 			player.setItemInUse(stack, getMaxItemUseDuration(stack));
 		return stack;
 	}
