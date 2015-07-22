@@ -1,0 +1,16 @@
+[
+{
+  "modid": "csalchemy",
+  "name": "Cliffside Alchemist",
+  "description": "Alchemy with glowstone!",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Phanta"],
+  "credits": "Vazkii, whom I borrowed some code from",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
