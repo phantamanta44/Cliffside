@@ -26,10 +26,10 @@ import net.minecraft.world.World;
 
 public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 
-	public static final int ALCHEM_BURNER = 0, ENERGIZER = 1, DISINTEGRATOR = 2, SMELTER = 3;
+	public static final int ALCHEM_BURNER = 0, ENERGIZER = 1, DISINTEGRATOR = 2, SMELTER = 3, ADV_BURNER = 4;
 	
 	public BlockMachine() {
-		super(Material.iron, 4);
+		super(Material.iron, 5);
 		setHardness(5F);
 		setResistance(10F);
 		setBlockName(BlockConstants.ALCHEM_MACHINE_NAME);
@@ -90,6 +90,8 @@ public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 			return new TileDisintegrator();
 		case SMELTER:
 			return new TileSmelter();
+		case ADV_BURNER:
+			return new TileAlchemicalBurner(72);
 		}
 		return null;
 	}
@@ -145,6 +147,7 @@ public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 			case ALCHEM_BURNER:
 			case DISINTEGRATOR:
 			case SMELTER:
+			case ADV_BURNER:
 				player.openGui(ModCliffside.instance, 420, world, x, y, z);
 				break;
 			}

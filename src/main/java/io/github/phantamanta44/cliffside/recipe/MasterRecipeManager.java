@@ -99,7 +99,7 @@ public class MasterRecipeManager {
 		}
 		
 		// Conductive frame
-		addOreDictRecipe(new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME), "mgm", "grg", "mgm", 'm', "ingotMithril", 'g', "blockGlass", 'r', new ItemStack(CSBlocks.gsNode));
+		addOreDictRecipe(new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME), "mgm", "grg", "mgm", 'm', "ingotMithril", 'g', "blockGlass", 'r', "gearAlchemical");
 		
 		// Alchemical burner
 		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.ALCHEM_BURNER), "aaa", "gng", "afa", 'a', "ingotAlchemical", 'g', "ingotGold", 'n', new ItemStack(CSBlocks.gsNodeBasic), 'f', new ItemStack(Blocks.furnace));
@@ -112,6 +112,9 @@ public class MasterRecipeManager {
 		
 		// Alcheimcal smelter
 		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.SMELTER), "ana", "gfg", "asa", 'a', "ingotAlchemical", 'n', "ingotBrickNether", 'g', "gearMithril", 'f', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME), 's', new ItemStack(Items.flint_and_steel));
+		
+		// Advanced burner
+		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.ADV_BURNER), "olo", "gfg", "aba", 'a', "ingotAlchemical", 'l', new ItemStack(Items.lava_bucket), 'o', new ItemStack(Blocks.obsidian), 'g', "gearQuicksilver", 'b', new ItemStack(CSBlocks.machine, 1, BlockMachine.ALCHEM_BURNER), 'f', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME));
 		
 		IngotRecipeHandler.registerRecipes();
 		StorageBlockRecipeHandler.registerRecipes();

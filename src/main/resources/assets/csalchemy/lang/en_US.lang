@@ -19,6 +19,7 @@ tile.csalchemy:machine0.name=Alchemical Burner
 tile.csalchemy:machine1.name=Glowstone Energizer
 tile.csalchemy:machine2.name=Catalytical Disintegrator
 tile.csalchemy:machine3.name=Alchemical Smelter
+tile.csalchemy:machine4.name=Advanced Alchemical Burner
 tile.csalchemy:ore0.name=Mithril Ore
 tile.csalchemy:ore1.name=Silver Ore
 
