@@ -9,10 +9,10 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BlockAlchemical extends BlockModSubs {
 	
-	public static final int ALCHEM_GS = 0, CATAL = 1, NINT_MIX = 2, MACHINE_FRAME = 3, QS_GLASS = 4;
+	public static final int ALCHEM_GS = 0, CATAL = 1, NINT_MIX = 2, MACHINE_FRAME = 3;
 
 	public BlockAlchemical() {
-		super(Material.iron, 5);
+		super(Material.iron, 4);
 		setStepSound(Block.soundTypeGlass);
 		setHardness(3F);
 		setResistance(7F);
@@ -31,8 +31,6 @@ public class BlockAlchemical extends BlockModSubs {
 		switch (meta) {
 		case MACHINE_FRAME:
 			return 9;
-		case QS_GLASS:
-			return 0;
 		default:
 			return 15;
 		}

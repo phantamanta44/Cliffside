@@ -5,6 +5,7 @@ public final class BlockConstants {
 
 	public static final String COMPRESSED_NAME = "compressed";
 	public static final String ALCHEMICAL_NAME = "alchemical";
+	public static final String GLASS_NAME = "matGlass";
 	public static final String GS_NODE_NAME = "gsNode";
 	public static final String GS_NODE_BASIC_NAME = "gsNodeBasic";
 	public static final String GS_NODE_DEEP_NAME = "gsNodeDeep";

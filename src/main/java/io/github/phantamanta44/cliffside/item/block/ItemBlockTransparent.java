@@ -1,20 +1,20 @@
 package io.github.phantamanta44.cliffside.item.block;
 
-import io.github.phantamanta44.cliffside.block.BlockAlchemical;
+import io.github.phantamanta44.cliffside.block.BlockTransparent;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockAlchemical extends ItemBlockWithMetadataAndName {
+public class ItemBlockTransparent extends ItemBlockWithMetadataAndName {
 
-	public ItemBlockAlchemical(Block block) {
+	public ItemBlockTransparent(Block block) {
 		super(block);
 	}
 	
 	public EnumRarity getRarity(ItemStack stack) {
 		switch (stack.getItemDamage()) {
-		case BlockAlchemical.NINT_MIX:
-			return EnumRarity.rare;
+		case BlockTransparent.QS_GLASS:
+			return EnumRarity.uncommon;
 		default:
 			return EnumRarity.common;
 		}

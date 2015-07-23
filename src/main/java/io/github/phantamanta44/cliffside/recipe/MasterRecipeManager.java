@@ -3,6 +3,7 @@ package io.github.phantamanta44.cliffside.recipe;
 import io.github.phantamanta44.cliffside.block.BlockAlchemical;
 import io.github.phantamanta44.cliffside.block.BlockCompressed;
 import io.github.phantamanta44.cliffside.block.BlockMachine;
+import io.github.phantamanta44.cliffside.block.BlockTransparent;
 import io.github.phantamanta44.cliffside.block.CSBlocks;
 import io.github.phantamanta44.cliffside.constant.GlobalConstants;
 import io.github.phantamanta44.cliffside.item.CSItems;
@@ -102,7 +103,7 @@ public class MasterRecipeManager {
 		addOreDictRecipe(new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME), "mgm", "grg", "mgm", 'm', "ingotMithril", 'g', "blockGlass", 'r', "gearAlchemical");
 		
 		// Quicksilver glass
-		addOreDictRecipe(new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.QS_GLASS), " q ", "qgq", " q ", 'g', "blockGlass", 'q', "dustQuicksilver");
+		addOreDictRecipe(new ItemStack(CSBlocks.matGlass, 1, BlockTransparent.QS_GLASS), " q ", "qgq", " q ", 'g', "blockGlass", 'q', "dustQuicksilver");
 		
 		// Alchemical burner
 		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.ALCHEM_BURNER), "aaa", "gng", "afa", 'a', "ingotAlchemical", 'g', "ingotGold", 'n', new ItemStack(CSBlocks.gsNodeBasic), 'f', new ItemStack(Blocks.furnace));
@@ -123,7 +124,7 @@ public class MasterRecipeManager {
 		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.LEYLINE_AGGRO), "ccc", "gfg", "cmc", 'c', "ingotCatalyst", 'g', "gearMithril", 'm', new ItemStack(Items.bucket), 'f', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME));
 		
 		// Lunar distillery
-		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.LUNA_DISTILL), "olo", "gfg", "ccc", 'o', new ItemStack(Blocks.obsidian), 'l', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.QS_GLASS), 'g', "gearQuicksilver", 'f', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME), 'c', "ingotQuicksilver");
+		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.LUNA_DISTILL), "olo", "gfg", "ccc", 'o', new ItemStack(Blocks.obsidian), 'l', "blockGlassHardened", 'g', "gearQuicksilver", 'f', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME), 'c', "ingotQuicksilver");
 		
 		IngotRecipeHandler.registerRecipes();
 		StorageBlockRecipeHandler.registerRecipes();

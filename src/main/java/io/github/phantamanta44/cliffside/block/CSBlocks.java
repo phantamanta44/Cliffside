@@ -7,6 +7,7 @@ public class CSBlocks {
 
 	public static Block compBlk;
 	public static Block alchemBlk;
+	public static Block matGlass;
 	public static Block gsNodeBasic;
 	public static Block gsNode;
 	public static Block gsNodeDeep;
@@ -19,6 +20,7 @@ public class CSBlocks {
 	public static void init() {
 		compBlk = new BlockCompressed();
 		alchemBlk = new BlockAlchemical();
+		matGlass = new BlockTransparent();
 		gsNodeBasic = new BlockGlowstoneNode(NodeType.BASIC);
 		gsNode = new BlockGlowstoneNode(NodeType.NORMAL);
 		gsNodeDeep = new BlockGlowstoneNode(NodeType.DEEP);

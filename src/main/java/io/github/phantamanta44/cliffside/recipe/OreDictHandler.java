@@ -1,8 +1,8 @@
 package io.github.phantamanta44.cliffside.recipe;
 
-import io.github.phantamanta44.cliffside.block.BlockAlchemical;
 import io.github.phantamanta44.cliffside.block.BlockCompressed;
 import io.github.phantamanta44.cliffside.block.BlockOre;
+import io.github.phantamanta44.cliffside.block.BlockTransparent;
 import io.github.phantamanta44.cliffside.block.CSBlocks;
 import io.github.phantamanta44.cliffside.item.CSItems;
 import io.github.phantamanta44.cliffside.item.resource.ItemDust;
@@ -46,7 +46,7 @@ public class OreDictHandler {
 		OreDictionary.registerOre("gearMithril", new ItemStack(CSItems.matResource, 1, ItemResource.GEAR_MITHRIL));
 		OreDictionary.registerOre("gearQuicksilver", new ItemStack(CSItems.matResource, 1, ItemResource.GEAR_QS));
 		OreDictionary.registerOre("gearMeat", new ItemStack(CSItems.matResource, 1, ItemResource.GEAR_MEAT));
-		OreDictionary.registerOre("blockGlassHardened", new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.QS_GLASS));
+		OreDictionary.registerOre("blockGlassHardened", new ItemStack(CSBlocks.matGlass, 1, BlockTransparent.QS_GLASS));
 	}
 	
 }
