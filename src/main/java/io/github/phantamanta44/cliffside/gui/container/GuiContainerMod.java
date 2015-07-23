@@ -1,6 +1,7 @@
 package io.github.phantamanta44.cliffside.gui.container;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.inventory.Container;
 import scala.actors.threadpool.Arrays;
 
@@ -12,6 +13,7 @@ public abstract class GuiContainerMod extends GuiContainer {
 
 	protected void drawHoveringText(String text, int x, int y) {
 		drawHoveringText(Arrays.asList(new String[] {text}), x, y, fontRendererObj);
+		RenderHelper.enableGUIStandardItemLighting();
 	}
 	
 }
