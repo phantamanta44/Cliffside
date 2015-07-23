@@ -4,6 +4,7 @@ import io.github.phantamanta44.cliffside.constant.GlobalConstants;
 import io.github.phantamanta44.cliffside.constant.LangConstants;
 import io.github.phantamanta44.cliffside.inventory.ContainerSmelter;
 import io.github.phantamanta44.cliffside.tile.TileSmelter;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -20,6 +21,7 @@ public class GuiSmelter extends GuiContainerMod {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		this.fontRendererObj.drawString(StatCollector.translateToLocal(LangConstants.CONT_INV_NAME), 8, this.ySize - 96 + 2, 4210752);
 		String invName = StatCollector.translateToLocal(LangConstants.CONT_SMELTER_NAME);
 		int nameXPos = xSize / 2 - fontRendererObj.getStringWidth(invName) / 2;
 		fontRendererObj.drawString(invName, nameXPos, 6, GlobalConstants.GUI_FONT_COLOR);

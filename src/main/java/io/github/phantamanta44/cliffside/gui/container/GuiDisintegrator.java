@@ -20,6 +20,7 @@ public class GuiDisintegrator extends GuiContainerMod {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		this.fontRendererObj.drawString(StatCollector.translateToLocal(LangConstants.CONT_INV_NAME), 8, this.ySize - 96 + 2, 4210752);
 		String invName = StatCollector.translateToLocal(LangConstants.CONT_DISINT_NAME);
 		int nameXPos = xSize / 2 - fontRendererObj.getStringWidth(invName) / 2;
 		fontRendererObj.drawString(invName, nameXPos, 6, GlobalConstants.GUI_FONT_COLOR);

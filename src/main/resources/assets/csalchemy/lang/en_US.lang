@@ -161,10 +161,21 @@ item.csalchemy:nintBoots.name=Nintendium Boots
 csalchemy.container.disintegrator=Catalytical Disintegrator
 csalchemy.container.alchemBurner=Alchemical Burner
 csalchemy.container.smelter=Alchemical Smelter
-csalchemy.container.lunarDistillery=Lunar Distillery
+csalchemy.container.lunarDistill=Lunar Distillery
 
 csalchemy.itemdesc.zfg0="No, no, no, no," said the speedrunner,
 csalchemy.itemdesc.zfg1=as he realized his last-second mistake.
 csalchemy.itemdesc.unbreakable=Unbreakable
 csalchemy.itemdesc.magical=Magical
 csalchemy.itemdesc.creative=Creative Only
+
+csalchemy.mseffect.wither=You suddenly feel sick to the stomach.
+csalchemy.mseffect.regen=You feel your body repairing its wounds.
+csalchemy.mseffect.fire=The heat becomes unbearable.
+csalchemy.mseffect.potion=You feel an odd magic affecting you.
+csalchemy.mseffect.ambush=A thick fog appears from nowhere. Something stirs in its depths.
+csalchemy.mseffect.drop=You suddenly feel extremely generous.
+csalchemy.mseffect.leap=You try to reach for the stars.
+csalchemy.mseffect.experience=You feel more experienced.
+csalchemy.mseffect.bonus=Random items begin to materialize around you.
+csalchemy.mseffect.corrupt=The land around you becomes corrupted.

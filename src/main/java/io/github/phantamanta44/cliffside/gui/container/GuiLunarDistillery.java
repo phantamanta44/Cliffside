@@ -21,7 +21,11 @@ public class GuiLunarDistillery extends GuiContainerMod {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		this.fontRendererObj.drawString(StatCollector.translateToLocal(LangConstants.CONT_INV_NAME), 8, this.ySize - 96 + 2, 4210752);
+		String invName = StatCollector.translateToLocal(LangConstants.CONT_LUNA_NAME);
+		int nameLength = fontRendererObj.getStringWidth(invName);
 		TileLunarDistillery tile = ((ContainerLunarDistillery)inventorySlots).getTile();
+		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.renderEngine.bindTexture(guiLocation);
 		int msBuffer = (int)(55F * tile.getMoonshineBufferPercentage());
 		int energy = (int)(16F * ((ContainerLunarDistillery)inventorySlots).getEnergyPercentage());
@@ -32,11 +36,19 @@ public class GuiLunarDistillery extends GuiContainerMod {
 		if (tile.canWork())
 			drawTexturedModalRect(8, 8, 0, 0, 156, 55);
 		
+		drawTexturedModalRect(0, -19, 0, 55, 7, 21);
+		int i = 0;
+		while (i < nameLength + 12)
+			drawTexturedModalRect(3 + i++, -19, 6, 55, 1, 19);
+		drawTexturedModalRect(3 + i, -19, 29, 55, 5, 19);
+		
 		int mX = mouseX - guiLeft, mY = mouseY - guiTop;
 		if (func_146978_c(167, 8, 1, 55, mouseX, mouseY))
 			drawHoveringText(tile.getMoonshineBuffer() + " / 10000 mB Moonshine", mX, mY);
 		if (func_146978_c(80, 62, 16, 1, mouseX, mouseY))
 			drawHoveringText(tile.getStoredEnergy() + " Lm", mX, mY);
+		
+		fontRendererObj.drawString(invName, 8, -12, GlobalConstants.GUI_FONT_COLOR);
 	}
 
 	@Override

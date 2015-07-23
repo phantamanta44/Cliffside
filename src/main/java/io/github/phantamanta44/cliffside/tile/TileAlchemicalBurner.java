@@ -202,6 +202,7 @@ public class TileAlchemicalBurner extends TileBasicInventory implements IActiveM
 		lumenBuffer = nbt.getShort("LumenBuffer");
 		burnTime = nbt.getShort("BurnTime");
 		work = nbt.getShort("Work");
+		workNeeded = nbt.getShort("WorkNeeded");
 		frontFace = nbt.getByte("FrontFace");
 		totalBurnTime = nbt.getShort("TotalBurnTime");
 	}
@@ -212,6 +213,7 @@ public class TileAlchemicalBurner extends TileBasicInventory implements IActiveM
 		nbt.setShort("LumenBuffer", (short)lumenBuffer);
 		nbt.setShort("BurnTime", (short)burnTime);
 		nbt.setShort("Work", (short)work);
+		nbt.setShort("WorkNeeded", (short)workNeeded);
 		nbt.setByte("FrontFace", (byte)frontFace);
 		nbt.setShort("TotalBurnTime", (short)totalBurnTime);
 	}

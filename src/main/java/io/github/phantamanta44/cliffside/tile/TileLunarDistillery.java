@@ -61,6 +61,7 @@ public class TileLunarDistillery extends TileBasicInventory implements IDirectio
 			} catch (Throwable th) { }
 		}
 		player.addChatMessage(new ChatComponentText("canWork: " + canWork()));
+		player.addChatMessage(new ChatComponentText("getWorkModifier: " + getWorkModifier()));
 	}
 
 	@Override
@@ -160,7 +161,7 @@ public class TileLunarDistillery extends TileBasicInventory implements IDirectio
 	
 	public int getWorkModifier() {
 		int moonPhaseMod = Math.abs(worldObj.getMoonPhase() - 4);
-		return (int)(moonPhaseMod * (yCoord / 30));
+		return (int)(moonPhaseMod * Math.max(Math.sqrt(yCoord) / 4, 0.25));
 	}
 	
 	public int getWork() {
