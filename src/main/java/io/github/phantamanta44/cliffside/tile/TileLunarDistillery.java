@@ -44,7 +44,7 @@ public class TileLunarDistillery extends TileBasicInventory implements IDirectio
 		float f = worldObj.rand.nextFloat() * 0.8F + 0.1F;
 		float f1 = worldObj.rand.nextFloat() * 0.8F + 0.1F;
 		float f2 = worldObj.rand.nextFloat() * 0.8F + 0.1F;
-		EntityItem ent = new EntityItem(worldObj, xCoord + f, yCoord + f1, zCoord + f2, new ItemStack(CSBlocks.machine, 1, BlockMachine.ALCHEM_BURNER));
+		EntityItem ent = new EntityItem(worldObj, xCoord + f, yCoord + f1, zCoord + f2, new ItemStack(CSBlocks.machine, 1, BlockMachine.LUNA_DISTILL));
 		float f3 = 0.05F;
 		ent.motionX = (double)((float)worldObj.rand.nextGaussian() * f3);
 		ent.motionY = (double)((float)worldObj.rand.nextGaussian() * f3 + 0.2F);
