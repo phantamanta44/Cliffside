@@ -6,10 +6,8 @@ import io.github.phantamanta44.cliffside.tile.base.IDebuggable;
 import io.github.phantamanta44.cliffside.tile.base.IDirectional;
 import io.github.phantamanta44.cliffside.tile.base.ILumenStorage.ILumenProvider;
 import io.github.phantamanta44.cliffside.tile.base.IWrenchable;
-import io.github.phantamanta44.cliffside.util.CSMathUtil;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,6 +16,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.ChunkCoordIntPair;
 
 public class TileLeylineAggregator extends TileEntity implements IDirectional, ILumenProvider, IWrenchable, IDebuggable {
 
@@ -164,18 +163,10 @@ public class TileLeylineAggregator extends TileEntity implements IDirectional, I
 	}
 	
 	public int getWorkNeeded() {
-		int xOff = xCoord % 16, zOff = zCoord % 16;
-		int[][] cp = new int[][] {
-				new int[] {xCoord - xOff, zCoord - zOff},
-				new int[] {(xCoord + 16) - xOff, zCoord - zOff},
-				new int[] {xCoord - xOff, (zCoord + 16) - zOff},
-				new int[] {(xCoord + 16) - xOff, (zCoord + 16) - zOff}};
-		double[] dist = new double[4];
-		for (int i = 0; i < 4; i++)
-			dist[i] = Math.hypot(xCoord - cp[i][0] + 0.5, zCoord - cp[i][1] + 0.5);
-		Arrays.sort(dist);
-		System.out.println(dist[0]);
-		return (int)((dist[0] + 1) * 480);
+		ChunkCoordIntPair chunk = worldObj.getChunkFromBlockCoords(xCoord, zCoord).getChunkCoordIntPair();
+		int cX = chunk.getCenterXPos(), cZ = chunk.getCenterZPosition();
+		double dist = Math.hypot(xCoord - cX, zCoord - cZ);
+		return (int)(1500 / Math.sqrt(dist + 1));
 	}
 
 }
