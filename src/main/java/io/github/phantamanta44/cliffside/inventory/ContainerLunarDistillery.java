@@ -56,6 +56,8 @@ public class ContainerLunarDistillery extends Container {
 			result = stack.copy();
 			if (slotIndex != 0) {
 				if (stack.getItem().equals(Items.glass_bottle) || (stack.getItem().equals(CSItems.matResource) && stack.getItemDamage() == ItemResource.BOTTLE_MS)) {
+					if (tile.getStackInSlot(0) != null)
+						return null;
 					ItemStack clonedStack = stack.copy();
 					clonedStack.stackSize = 1;
 					if (!this.mergeItemStack(clonedStack, 0, 1, false))
