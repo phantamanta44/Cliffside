@@ -2,11 +2,10 @@ package io.github.phantamanta44.cliffside.item.resource;
 
 import io.github.phantamanta44.cliffside.constant.ItemConstants;
 import io.github.phantamanta44.cliffside.constant.LangConstants;
+import io.github.phantamanta44.cliffside.item.CSItems;
 import io.github.phantamanta44.cliffside.item.ItemModSubs;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 import java.util.Random;
 
@@ -15,6 +14,7 @@ import net.minecraft.entity.item.EntityXPOrb;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -54,6 +54,11 @@ public class ItemResource extends ItemModSubs {
 		}
 		if (food.getItemDamage() == BOTTLE_MS) {
 			doMoonshineStuff(player);
+			if (!player.capabilities.isCreativeMode) {
+				ItemStack bottle = new ItemStack(Items.glass_bottle);
+				if (!player.inventory.addItemStackToInventory(bottle))
+					world.spawnEntityInWorld(new EntityItem(world, player.posX, player.posY + 1, player.posZ, bottle));
+			}
 		}
 		if (!player.capabilities.isCreativeMode)
 			food.stackSize--;
@@ -181,15 +186,18 @@ public class ItemResource extends ItemModSubs {
 				float f3 = 0.18F;
 				for (int i = 0; i < player.inventory.mainInventory.length; i++) {
 					if (player.inventory.mainInventory[i] != null) {
-						float f = rand.nextFloat() * 0.8F + 0.1F;
-						float f1 = rand.nextFloat() * 0.8F + 0.1F;
-						float f2 = rand.nextFloat() * 0.8F + 0.1F;
-						EntityItem ent = new EntityItem(player.worldObj, player.posX + f, player.posY + f1, player.posZ + f2, player.inventory.mainInventory[i].copy());
-						ent.motionX = (double)((float)rand.nextGaussian() * f3);
-						ent.motionY = (double)((float)rand.nextGaussian() * f3 + 0.2F);
-						ent.motionZ = (double)((float)rand.nextGaussian() * f3);
-						player.worldObj.spawnEntityInWorld(ent);
-						player.inventory.mainInventory[i] = null;
+						if (!(player.inventory.mainInventory[i].getItem().equals(CSItems.matResource) && player.inventory.mainInventory[i].getItemDamage() == BOTTLE_MS)) {
+							float f = rand.nextFloat() * 0.8F + 0.1F;
+							float f1 = rand.nextFloat() * 0.8F + 0.1F;
+							float f2 = rand.nextFloat() * 0.8F + 0.1F;
+							EntityItem ent = new EntityItem(player.worldObj, player.posX + f, player.posY + f1, player.posZ + f2, player.inventory.mainInventory[i].copy());
+							ent.motionX = (double)((float)rand.nextGaussian() * f3);
+							ent.motionY = (double)((float)rand.nextGaussian() * f3 + 0.2F);
+							ent.motionZ = (double)((float)rand.nextGaussian() * f3);
+							ent.delayBeforeCanPickup = 32;
+							player.worldObj.spawnEntityInWorld(ent);
+							player.inventory.mainInventory[i] = null;
+						}
 					}
 				}
 				for (int i = 0; i < player.inventory.armorInventory.length; i++) {
