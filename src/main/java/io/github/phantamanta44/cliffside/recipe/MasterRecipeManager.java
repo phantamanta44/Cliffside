@@ -102,7 +102,7 @@ public class MasterRecipeManager {
 		addOreDictRecipe(new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.MACHINE_FRAME), "mgm", "grg", "mgm", 'm', "ingotMithril", 'g', "blockGlass", 'r', "gearAlchemical");
 		
 		// Quicksilver glass
-		addOreDictRecipe(new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.QS_GLASS), " q ", "qgq", " q ", 'g', "blockGlass", 'q', "nuggetQuicksilver");
+		addOreDictRecipe(new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.QS_GLASS), " q ", "qgq", " q ", 'g', "blockGlass", 'q', "dustQuicksilver");
 		
 		// Alchemical burner
 		addOreDictRecipe(new ItemStack(CSBlocks.machine, 1, BlockMachine.ALCHEM_BURNER), "aaa", "gng", "afa", 'a', "ingotAlchemical", 'g', "ingotGold", 'n', new ItemStack(CSBlocks.gsNodeBasic), 'f', new ItemStack(Blocks.furnace));
