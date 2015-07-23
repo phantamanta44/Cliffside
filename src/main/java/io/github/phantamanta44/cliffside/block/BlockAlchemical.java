@@ -13,6 +13,7 @@ public class BlockAlchemical extends BlockModSubs {
 
 	public BlockAlchemical() {
 		super(Material.iron, 5);
+		setStepSound(Block.soundTypeGlass);
 		setHardness(3F);
 		setResistance(7F);
 		setBlockName(BlockConstants.ALCHEMICAL_NAME);
