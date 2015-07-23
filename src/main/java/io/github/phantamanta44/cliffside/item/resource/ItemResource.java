@@ -150,7 +150,7 @@ public class ItemResource extends ItemModSubs {
 			}
 			if ((eff & 0b10000) != 0) {
 				effectMsg.add(StatCollector.translateToLocal(LangConstants.MSEFF_GUARDIAN));
-				player.addPotionEffect(new PotionEffect(Potion.blindness.id, 5, 5, true));
+				player.addPotionEffect(new PotionEffect(Potion.blindness.id, 100, 5, true));
 				List<ChunkPosition> spawnPositions = new ArrayList<>();
 				int xCoord = player.getPlayerCoordinates().posX, yCoord = player.getPlayerCoordinates().posY, zCoord = player.getPlayerCoordinates().posZ;
 				int xOrig = xCoord - 8, yOrig = yCoord - 8, zOrig = zCoord - 8;
