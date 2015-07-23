@@ -55,7 +55,8 @@ public class ItemResource extends ItemModSubs {
 		if (food.getItemDamage() == BOTTLE_MS) {
 			doMoonshineStuff(player);
 		}
-		food.stackSize--;
+		if (!player.capabilities.isCreativeMode)
+			food.stackSize--;
 		return food;
 	}
 	
@@ -177,27 +178,32 @@ public class ItemResource extends ItemModSubs {
 			}
 			if ((eff & 0b100000) != 0) {
 				effectMsg.add(StatCollector.translateToLocal(LangConstants.MSEFF_DROPINV));
-				Deque<ItemStack> invItems = new ArrayDeque<>();
-				for (ItemStack stack : player.inventory.armorInventory) {
-					if (stack != null)
-						invItems.offer(stack);
+				float f3 = 0.18F;
+				for (int i = 0; i < player.inventory.mainInventory.length; i++) {
+					if (player.inventory.mainInventory[i] != null) {
+						float f = rand.nextFloat() * 0.8F + 0.1F;
+						float f1 = rand.nextFloat() * 0.8F + 0.1F;
+						float f2 = rand.nextFloat() * 0.8F + 0.1F;
+						EntityItem ent = new EntityItem(player.worldObj, player.posX + f, player.posY + f1, player.posZ + f2, player.inventory.mainInventory[i].copy());
+						ent.motionX = (double)((float)rand.nextGaussian() * f3);
+						ent.motionY = (double)((float)rand.nextGaussian() * f3 + 0.2F);
+						ent.motionZ = (double)((float)rand.nextGaussian() * f3);
+						player.worldObj.spawnEntityInWorld(ent);
+						player.inventory.mainInventory[i] = null;
+					}
 				}
-				for (ItemStack stack : player.inventory.mainInventory) {
-					if (stack != null)
-						invItems.offer(stack);
-				}
-				ItemStack stack;
-				while((stack = invItems.poll()) != null) {
-					float f = rand.nextFloat() * 0.8F + 0.1F;
-					float f1 = rand.nextFloat() * 0.8F + 0.1F;
-					float f2 = rand.nextFloat() * 0.8F + 0.1F;
-					EntityItem ent = new EntityItem(player.worldObj, player.posX + f, player.posY + f1, player.posZ + f2, stack.copy());
-					float f3 = 0.05F;
-					ent.motionX = (double)((float)rand.nextGaussian() * f3);
-					ent.motionY = (double)((float)rand.nextGaussian() * f3 + 0.2F);
-					ent.motionZ = (double)((float)rand.nextGaussian() * f3);
-					player.worldObj.spawnEntityInWorld(ent);
-					stack.stackSize = 0;
+				for (int i = 0; i < player.inventory.armorInventory.length; i++) {
+					if (player.inventory.armorInventory[i] != null) {
+						float f = rand.nextFloat() * 0.8F + 0.1F;
+						float f1 = rand.nextFloat() * 0.8F + 0.1F;
+						float f2 = rand.nextFloat() * 0.8F + 0.1F;
+						EntityItem ent = new EntityItem(player.worldObj, player.posX + f, player.posY + f1, player.posZ + f2, player.inventory.armorInventory[i].copy());
+						ent.motionX = (double)((float)rand.nextGaussian() * f3);
+						ent.motionY = (double)((float)rand.nextGaussian() * f3 + 0.2F);
+						ent.motionZ = (double)((float)rand.nextGaussian() * f3);
+						player.worldObj.spawnEntityInWorld(ent);
+						player.inventory.armorInventory[i] = null;
+					}
 				}
 			}
 			if ((eff & 0b1000000) != 0) {
@@ -227,7 +233,7 @@ public class ItemResource extends ItemModSubs {
 					float f1 = rand.nextFloat() * 0.8F + 0.1F;
 					float f2 = rand.nextFloat() * 0.8F + 0.1F;
 					EntityItem ent = new EntityItem(player.worldObj, player.posX + f, player.posY + f1, player.posZ + f2, gen.getOneItem(rand));
-					float f3 = 0.25F;
+					float f3 = 0.22F;
 					ent.motionX = (double)((float)rand.nextGaussian() * f3);
 					ent.motionY = (double)((float)rand.nextGaussian() * f3 + 0.2F);
 					ent.motionZ = (double)((float)rand.nextGaussian() * f3);
