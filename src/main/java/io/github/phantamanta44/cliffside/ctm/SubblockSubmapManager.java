@@ -25,7 +25,7 @@ public class SubblockSubmapManager implements ISubmapManager {
 	 *            The CTM texture will be this path, plus {@code "-ctm"}.
 	 */
 	public SubblockSubmapManager(String textureName) {
-		this.textureName = textureName;
+		this.textureName = textureName.replaceAll("tile\\.", "");
 	}
 
 	@Override
@@ -58,7 +58,7 @@ public class SubblockSubmapManager implements ISubmapManager {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world, int meta) {
+	public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world, int meta, int face) {
 		if (rb == null)
 			rb = new RenderBlocksCTM();
 		rb.setRenderBoundsFromBlock(block);

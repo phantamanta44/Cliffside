@@ -48,7 +48,7 @@ public class CTMRenderer implements ISimpleBlockRenderingHandler {
 
 	protected RenderBlocks getContext(RenderBlocks rendererOld, Block block, IBlockAccess world, ISubmapManager manager, int meta) {
 		if (!rendererOld.hasOverrideBlockTexture() && manager != null) {
-			RenderBlocks rb = manager.createRenderContext(rendererOld, block, world, meta);
+			RenderBlocks rb = manager.createRenderContext(rendererOld, block, world, meta, 0);
 			if (rb != null && rb != rendererOld) {
 				rb.blockAccess = world;
 				if (rendererOld.lockBlockBounds) {

@@ -1,5 +1,6 @@
 package io.github.phantamanta44.cliffside.ctm;
 
+import io.github.phantamanta44.cliffside.ModCliffside;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -27,7 +28,7 @@ public class BasicSubmapManager implements ISubmapManager {
 	 *            The CTM texture will be this path, plus {@code "-ctm"}.
 	 */
 	public BasicSubmapManager(String textureName) {
-		this.textureName = textureName;
+		this.textureName = textureName.replaceAll("tile\\.", "");
 	}
 
 	@Override
@@ -43,7 +44,8 @@ public class BasicSubmapManager implements ISubmapManager {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(String modName, Block block, IIconRegister register) {
-		submap = new TextureSubmap(register.registerIcon(modName + ":" + textureName + ".ctm"), 4, 4);
+		if (((ICTMBlock)block).getActualRenderMode(0) == ModCliffside.proxy.ctmRenderer.getRenderId())
+			submap = new TextureSubmap(register.registerIcon(modName + ":" + textureName + ".ctm"), 4, 4);
 		submapSmall = new TextureSubmap(register.registerIcon(modName + ":" + textureName), 2, 2);
 	}
 	
@@ -55,10 +57,9 @@ public class BasicSubmapManager implements ISubmapManager {
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world, int meta) {
-		if (rb == null) {
+	public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world, int meta, int face) {
+		if (rb == null)
 			rb = new RenderBlocksCTM();
-		}
 		rb.setRenderBoundsFromBlock(block);
 		rb.submap = submap;
 		rb.submapSmall = submapSmall;

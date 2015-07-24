@@ -3,7 +3,10 @@ package io.github.phantamanta44.cliffside.block;
 import io.github.phantamanta44.cliffside.ModCliffside;
 import io.github.phantamanta44.cliffside.constant.BlockConstants;
 import io.github.phantamanta44.cliffside.constant.GlobalConstants;
-import io.github.phantamanta44.cliffside.constant.IconHelper;
+import io.github.phantamanta44.cliffside.ctm.ICTMBlock;
+import io.github.phantamanta44.cliffside.ctm.ISubmapManager;
+import io.github.phantamanta44.cliffside.ctm.RenderBlocksCTM;
+import io.github.phantamanta44.cliffside.ctm.TextureSubmap;
 import io.github.phantamanta44.cliffside.tile.TileAlchemicalBurner;
 import io.github.phantamanta44.cliffside.tile.TileDisintegrator;
 import io.github.phantamanta44.cliffside.tile.TileGlowstoneEnergizer;
@@ -15,6 +18,7 @@ import io.github.phantamanta44.cliffside.tile.base.IDirectional;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -25,11 +29,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 
 	public static final int ALCHEM_BURNER = 0, ENERGIZER = 1, DISINTEGRATOR = 2, SMELTER = 3, ADV_BURNER = 4, LEYLINE_AGGRO = 5, LUNA_DISTILL = 6;
-	IIcon[] icons; // Too lazy to write an ISubblockManager
 	
 	public BlockMachine() {
 		super(Material.iron, 7);
@@ -40,12 +46,8 @@ public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 	
 	@Override
 	public void registerBlockIcons(IIconRegister registry) {
-		icons = new IIcon[subblockCount * 2 + 1];
-		for (int i = 0; i < subblockCount; i++) {
-			icons[i * 2] = IconHelper.forName(registry, getUnlocalizedName().replaceAll("tile\\.", "") + i + "_off");
-			icons[i * 2 + 1] = IconHelper.forName(registry, getUnlocalizedName().replaceAll("tile\\.", "") + i + "_on");
-		}
-		icons[icons.length - 1] = registry.registerIcon(GlobalConstants.MOD_PREF + BlockConstants.ALCHEM_MACHINE_SIDE_TEX);
+		smMan = new MachineSubmapManager(getUnlocalizedName(), this);
+		smMan.registerIcons(GlobalConstants.MOD_ID, this, registry, subblockCount);
 	}
 	
 	public int getFrontFace(IBlockAccess world, int x, int y, int z) {
@@ -64,17 +66,12 @@ public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 	
 	@Override
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-		if (side != getFrontFace(world, x, y, z))
-			return icons[icons.length - 1];
-		int meta = world.getBlockMetadata(x, y, z);
-		return icons[meta * 2 + (isActive(world, x, y, z) ? 1 : 0)];
+		return smMan.getIcon(world, x, y, z, side);
 	}
 	
 	@Override
 	public IIcon getIcon(int side, int meta) {
-		if (side != 3)
-			return icons[icons.length - 1];
-		return icons[meta * 2];
+		return smMan.getIcon(side, meta);
 	}
 	
 	@Override
@@ -161,6 +158,77 @@ public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 			}
 		}
 		return true;
+	}
+	
+	private static class MachineSubmapManager implements ISubmapManager {
+
+		@SideOnly(Side.CLIENT)
+		private static RenderBlocksCTM rb;
+		private BlockMachine blk;
+		private TextureSubmap sideIcon;
+		private TextureSubmap[] iconsOff;
+		private TextureSubmap[] iconsOn;
+		private String tex;
+		
+		public MachineSubmapManager(String textureName, BlockMachine block) {
+			tex = textureName.replaceAll("tile\\.", "");
+			blk = block;
+		}
+		
+		@Override
+		public IIcon getIcon(int side, int meta) {
+			if (side != 3)
+				return sideIcon.getBaseIcon();
+			return iconsOff[meta].getBaseIcon();
+		}
+
+		@Override
+		public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+			if (side != blk.getFrontFace(world, x, y, z))
+				return sideIcon.getBaseIcon();
+			int meta = world.getBlockMetadata(x, y, z);
+			if (blk.isActive(world, x, y, z))
+				return iconsOn[meta].getBaseIcon();
+			return iconsOff[meta].getBaseIcon();
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void registerIcons(String modName, Block block, IIconRegister register) {
+			throw new IllegalStateException("Renderer for " + tex + " has subblocks!");
+		}
+		
+		@Override
+		@SideOnly(Side.CLIENT)
+		public void registerIcons(String modName, Block block, IIconRegister register, int subBlocks) {
+			iconsOff = new TextureSubmap[subBlocks];
+			iconsOn = new TextureSubmap[subBlocks];
+			for (int i = 0; i < subBlocks; i++) {
+				String texName = modName + ":" + tex + i;
+				iconsOff[i] = new TextureSubmap(register.registerIcon(texName + "_off"), 2, 2);
+				iconsOn[i] = new TextureSubmap(register.registerIcon(texName + "_on"), 2, 2);
+			}
+			sideIcon = new TextureSubmap(register.registerIcon(modName + ":" + BlockConstants.ALCHEM_MACHINE_SIDE_TEX), 2, 2);
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public RenderBlocks createRenderContext(RenderBlocks rendererOld, Block block, IBlockAccess world, int meta, int face) {
+			throw new IllegalStateException("Cannot create render context for " + tex + "; it has no CTM!");
+		}
+
+		@Override
+		public void preRenderSide(RenderBlocks renderBlocksCTM,
+				IBlockAccess blockAccess, int bx, int by, int bz,
+				ForgeDirection face) {
+		}
+
+		@Override
+		public void postRenderSide(RenderBlocks renderBlocksCTM,
+				IBlockAccess blockAccess, int bx, int by, int bz,
+				ForgeDirection face) {
+		}
+		
 	}
 	
 }

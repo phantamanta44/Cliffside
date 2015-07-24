@@ -22,7 +22,7 @@ public interface ISubmapManager {
 			ForgeDirection face);
 
 	public RenderBlocks createRenderContext(RenderBlocks rendererOld,
-			Block block, IBlockAccess world, int meta);
+			Block block, IBlockAccess world, int meta, int face);
 
 	void registerIcons(String modName, Block block, IIconRegister register);
 

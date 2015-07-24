@@ -50,7 +50,7 @@ public class BlockModSubs extends BlockMod {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister registry) {
-		smMan = new SubblockSubmapManager(getUnlocalizedName().replaceAll("tile\\.", ""));
+		smMan = new SubblockSubmapManager(getUnlocalizedName());
 		smMan.registerIcons(GlobalConstants.MOD_ID, this, registry, subblockCount);
 	}
 	

@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 
+@Deprecated
 public final class IconHelper {
 
 		public static IIcon forName(IIconRegister registry, String name) {
