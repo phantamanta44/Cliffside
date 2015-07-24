@@ -2,6 +2,7 @@ package io.github.phantamanta44.cliffside.tile;
 
 import io.github.phantamanta44.cliffside.block.BlockMachine;
 import io.github.phantamanta44.cliffside.block.CSBlocks;
+import io.github.phantamanta44.cliffside.tile.base.IActiveMachine;
 import io.github.phantamanta44.cliffside.tile.base.IDebuggable;
 import io.github.phantamanta44.cliffside.tile.base.IDirectional;
 import io.github.phantamanta44.cliffside.tile.base.ILumenStorage.ILumenProvider;
@@ -18,7 +19,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.world.ChunkCoordIntPair;
 
-public class TileLeylineAggregator extends TileEntity implements IDirectional, ILumenProvider, IWrenchable, IDebuggable {
+public class TileLeylineAggregator extends TileEntity implements IDirectional, ILumenProvider, IWrenchable, IDebuggable, IActiveMachine {
 
 	private static int LUMEN_BUFFER_SIZE = 16, LUMEN_PACKET_SIZE = 4;
 	private int frontFace = -1;
@@ -167,6 +168,11 @@ public class TileLeylineAggregator extends TileEntity implements IDirectional, I
 		int cX = chunk.getCenterXPos(), cZ = chunk.getCenterZPosition();
 		double dist = Math.hypot(xCoord - cX, zCoord - cZ);
 		return (int)(1500 / Math.sqrt(dist + 1));
+	}
+
+	@Override
+	public boolean isActive() {
+		return lumenBuffer < LUMEN_BUFFER_SIZE;
 	}
 
 }

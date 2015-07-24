@@ -129,6 +129,16 @@ public class ItemResource extends ItemModSubs {
 		}
 	}
 	
+	@Override
+	public boolean hasEffect(ItemStack stack) {
+		switch (stack.getItemDamage()) {
+		case BOTTLE_MS:
+			return true;
+		default:
+			return false;
+		}
+	}
+	
 	public static void doMoonshineStuff(EntityPlayer player) {
 		if (!player.worldObj.isRemote) {
 			Random rand = player.getRNG();
