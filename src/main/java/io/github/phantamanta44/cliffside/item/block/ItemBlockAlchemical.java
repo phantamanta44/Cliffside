@@ -15,6 +15,8 @@ public class ItemBlockAlchemical extends ItemBlockWithMetadataAndName {
 		switch (stack.getItemDamage()) {
 		case BlockAlchemical.NINT_MIX:
 			return EnumRarity.rare;
+		case BlockAlchemical.ETCHED_OBS:
+			return EnumRarity.uncommon;
 		default:
 			return EnumRarity.common;
 		}

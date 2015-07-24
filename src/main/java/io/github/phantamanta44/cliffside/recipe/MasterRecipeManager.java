@@ -49,7 +49,7 @@ public class MasterRecipeManager {
 		addShapelessOreDictRecipe(new ItemStack(CSItems.matDust, 2, ItemDust.QS), "dustMithril", "dustSilver");
 		
 		// Nintendium mixture
-		addOreDictRecipe(new ItemStack(CSBlocks.compBlk, 10, BlockCompressed.NINT_COMPONENT), "pop", "obo", "pop", 'p', new ItemStack(Items.ender_eye), 'o', new ItemStack(Blocks.obsidian), 'b', new ItemStack(CSBlocks.compBlk, 1 , BlockCompressed.COMP_QS));
+		addOreDictRecipe(new ItemStack(CSBlocks.compBlk, 10, BlockCompressed.NINT_COMPONENT), "pop", "obo", "pop", 'p', new ItemStack(Items.ender_eye), 'o', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.ETCHED_OBS), 'b', new ItemStack(CSItems.matResource, 1, ItemResource.BOTTLE_MS));
 		
 		// Bread
 		addSmelting(new ItemStack(Items.bread), new ItemStack(CSItems.matResource, 1, ItemResource.DOUGH), 4200);

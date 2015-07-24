@@ -8,6 +8,8 @@ import io.github.phantamanta44.cliffside.util.BlockWithMeta;
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.init.Blocks;
+
 public class EnergizerRecipeHandler {
 	
 	public static Map<BlockWithMeta, RecipeEnergizer> recipeList = new HashMap<>();
@@ -16,6 +18,7 @@ public class EnergizerRecipeHandler {
 		addRecipe(new BlockWithMeta(CSBlocks.alchemBlk, BlockAlchemical.ALCHEM_GS), new BlockWithMeta(CSBlocks.compBlk, BlockCompressed.COMP_GS), 3);
 		addRecipe(new BlockWithMeta(CSBlocks.alchemBlk, BlockAlchemical.CATAL), new BlockWithMeta(CSBlocks.compBlk, BlockCompressed.COMP_ALCHEM_GS), 5);
 		addRecipe(new BlockWithMeta(CSBlocks.alchemBlk, BlockAlchemical.NINT_MIX), new BlockWithMeta(CSBlocks.compBlk, BlockCompressed.NINT_COMPONENT), 8);
+		addRecipe(new BlockWithMeta(CSBlocks.alchemBlk, BlockAlchemical.ETCHED_OBS), new BlockWithMeta(Blocks.obsidian), 4);
 	}
 	
 	public static void addRecipe(BlockWithMeta out, BlockWithMeta in, int work) {
