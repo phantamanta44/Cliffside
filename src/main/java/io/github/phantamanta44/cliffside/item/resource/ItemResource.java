@@ -219,7 +219,7 @@ public class ItemResource extends ItemModSubs {
 							ent.motionX = (double)((float)rand.nextGaussian() * f3);
 							ent.motionY = (double)((float)rand.nextGaussian() * f3 + 0.2F);
 							ent.motionZ = (double)((float)rand.nextGaussian() * f3);
-							ent.delayBeforeCanPickup = 32;
+							ent.delayBeforeCanPickup = 48;
 							player.worldObj.spawnEntityInWorld(ent);
 							player.inventory.mainInventory[i] = null;
 						}
@@ -234,6 +234,7 @@ public class ItemResource extends ItemModSubs {
 						ent.motionX = (double)((float)rand.nextGaussian() * f3);
 						ent.motionY = (double)((float)rand.nextGaussian() * f3 + 0.2F);
 						ent.motionZ = (double)((float)rand.nextGaussian() * f3);
+						ent.delayBeforeCanPickup = 48;
 						player.worldObj.spawnEntityInWorld(ent);
 						player.inventory.armorInventory[i] = null;
 					}
