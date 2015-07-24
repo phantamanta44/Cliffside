@@ -7,8 +7,11 @@ import io.github.phantamanta44.cliffside.gui.container.GuiAlchemicalBurner;
 import io.github.phantamanta44.cliffside.gui.container.GuiDisintegrator;
 import io.github.phantamanta44.cliffside.gui.container.GuiLunarDistillery;
 import io.github.phantamanta44.cliffside.gui.container.GuiSmelter;
+import io.github.phantamanta44.cliffside.handler.ExplosiveEnergizationHandler;
 import io.github.phantamanta44.cliffside.handler.GuiHandler;
+import io.github.phantamanta44.cliffside.handler.NintendiumCraftHandler;
 import io.github.phantamanta44.cliffside.handler.WrenchHandler;
+import io.github.phantamanta44.cliffside.handler.ZfgBootHandler;
 import io.github.phantamanta44.cliffside.inventory.ContainerAlchemicalBurner;
 import io.github.phantamanta44.cliffside.inventory.ContainerDisintegrator;
 import io.github.phantamanta44.cliffside.inventory.ContainerLunarDistillery;
@@ -43,6 +46,9 @@ public class CommonProxy {
 	public void init(FMLInitializationEvent event) {
 		MasterRecipeManager.registerRecipes();
 		MinecraftForge.EVENT_BUS.register(new WrenchHandler());
+		MinecraftForge.EVENT_BUS.register(new ExplosiveEnergizationHandler());
+		MinecraftForge.EVENT_BUS.register(new ZfgBootHandler());
+		MinecraftForge.EVENT_BUS.register(new NintendiumCraftHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(ModCliffside.instance, new GuiHandler());
 		registerGuis();
 	}
