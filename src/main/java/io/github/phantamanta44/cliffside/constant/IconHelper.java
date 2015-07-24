@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 
-@Deprecated
 public final class IconHelper {
 
 		public static IIcon forName(IIconRegister registry, String name) {
@@ -16,22 +15,27 @@ public final class IconHelper {
 			return registry.registerIcon(GlobalConstants.MOD_PREF + dregistry + "/" + name);
 		}
 
+		@Deprecated
 		public static IIcon forBlock(IIconRegister registry, Block block) {
 			return forName(registry, block.getUnlocalizedName().replaceAll("tile\\.", ""));
 		}
 
+		@Deprecated
 		public static IIcon forBlock(IIconRegister registry, Block block, int meta) {
 			return forBlock(registry, block, Integer.toString(meta));
 		}
 
+		@Deprecated
 		public static IIcon forBlock(IIconRegister registry, Block block, int meta, String dregistry) {
 			return forBlock(registry, block, Integer.toString(meta), dregistry);
 		}
 
+		@Deprecated
 		public static IIcon forBlock(IIconRegister registry, Block block, String s) {
 			return forName(registry, block.getUnlocalizedName().replaceAll("tile\\.", "") + s);
 		}
-
+		
+		@Deprecated
 		public static IIcon forBlock(IIconRegister registry, Block block, String s, String dregistry) {
 			return forName(registry, block.getUnlocalizedName().replaceAll("tile\\.", "") + s, dregistry);
 		}
