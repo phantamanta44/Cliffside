@@ -1,6 +1,7 @@
 package io.github.phantamanta44.cliffside.util;
 
 import net.minecraft.block.Block;
+import net.minecraft.world.IBlockAccess;
 
 public class BlockWithMeta {
 	
@@ -15,6 +16,11 @@ public class BlockWithMeta {
 	public BlockWithMeta(Block type, int damage) {
 		block = type;
 		meta = damage;
+	}
+	
+	public BlockWithMeta(IBlockAccess world, int x, int y, int z) {
+		block = world.getBlock(x, y, z);
+		meta = world.getBlockMetadata(x, y, z);
 	}
 	
 	public Block getBlock() {

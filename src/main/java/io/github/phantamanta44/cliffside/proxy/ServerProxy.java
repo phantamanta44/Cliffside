@@ -1,8 +1,18 @@
 package io.github.phantamanta44.cliffside.proxy;
 
+import io.github.phantamanta44.cliffside.block.BlockOre;
+import io.github.phantamanta44.cliffside.block.CSBlocks;
+import io.github.phantamanta44.cliffside.handler.ExplosiveEnergizationHandler;
+import io.github.phantamanta44.cliffside.handler.NintendiumCraftHandler;
+import io.github.phantamanta44.cliffside.handler.ZfgBootHandler;
+import io.github.phantamanta44.cliffside.util.BlockWithMeta;
+import io.github.phantamanta44.cliffside.worldgen.WorldGenSimple;
+import net.minecraft.init.Blocks;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ServerProxy extends CommonProxy {
 	
@@ -14,6 +24,11 @@ public class ServerProxy extends CommonProxy {
 	@Override
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
+		MinecraftForge.EVENT_BUS.register(new ExplosiveEnergizationHandler());
+		MinecraftForge.EVENT_BUS.register(new ZfgBootHandler());
+		MinecraftForge.EVENT_BUS.register(new NintendiumCraftHandler());
+		GameRegistry.registerWorldGenerator(new WorldGenSimple(new BlockWithMeta(CSBlocks.ore, BlockOre.MITHRIL), 0, new BlockWithMeta(Blocks.stone), 4, 18, 4, 4), 8);
+		GameRegistry.registerWorldGenerator(new WorldGenSimple(new BlockWithMeta(CSBlocks.ore, BlockOre.SILVER), 0, new BlockWithMeta(Blocks.stone), 4, 64, 10, 12), 8);
 	}
 
 	@Override

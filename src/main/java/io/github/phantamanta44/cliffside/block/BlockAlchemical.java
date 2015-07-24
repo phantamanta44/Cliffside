@@ -35,5 +35,15 @@ public class BlockAlchemical extends BlockModSubs {
 			return 15;
 		}
 	}
+	
+	@Override
+	public int getActualRenderMode(int meta) {
+		switch (meta) {
+		case MACHINE_FRAME:
+			return getRenderType();
+		default:
+			return 0;
+		}
+	}
 
 }

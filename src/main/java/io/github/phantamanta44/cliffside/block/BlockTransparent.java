@@ -5,8 +5,6 @@ import io.github.phantamanta44.cliffside.item.block.ItemBlockTransparent;
 import io.github.phantamanta44.cliffside.util.BlockWithMeta;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.Minecraft;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.Facing;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -44,15 +42,28 @@ public class BlockTransparent extends BlockModSubs {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public boolean shouldSideBeRendered(IBlockAccess world, int x, int y, int z, int face) {
-		BlockWithMeta block = new BlockWithMeta(
-				world.getBlock(x - Facing.offsetsXForSide[face], y - Facing.offsetsYForSide[face], z - Facing.offsetsZForSide[face]),
-				world.getBlockMetadata(x - Facing.offsetsXForSide[face], y - Facing.offsetsYForSide[face], z - Facing.offsetsZForSide[face]));
+		BlockWithMeta block = new BlockWithMeta(world, x - Facing.offsetsXForSide[face], y - Facing.offsetsYForSide[face], z - Facing.offsetsZForSide[face]);
 		BlockWithMeta adj = new BlockWithMeta(world.getBlock(x, y, z), world.getBlockMetadata(x, y, z));
 		if (block.getBlock() == adj.getBlock()) {
 			if (block.getMeta() == adj.getMeta())
 				return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public int getActualRenderMode(int meta) {
+		switch (meta) {
+		case QS_GLASS:
+			return getRenderType();
+		default:
+			return 0;
+		}
+	}
+	
+	@Override
+	public int getRenderBlockPass() {
+		return 1;
 	}
 
 }

@@ -29,6 +29,7 @@ import net.minecraft.world.World;
 public class BlockMachine extends BlockModSubs implements ITileEntityProvider {
 
 	public static final int ALCHEM_BURNER = 0, ENERGIZER = 1, DISINTEGRATOR = 2, SMELTER = 3, ADV_BURNER = 4, LEYLINE_AGGRO = 5, LUNA_DISTILL = 6;
+	IIcon[] icons; // Too lazy to write an ISubblockManager
 	
 	public BlockMachine() {
 		super(Material.iron, 7);

@@ -163,7 +163,7 @@ public class TileGlowstoneEnergizer extends TileMod implements ILumenAcceptor, I
 				for (int x = xOrig; x <= xTar; x++) {
 					for (int y = yOrig; y <= yTar; y++) {
 						for (int z = zOrig; z <= zTar; z++) {
-							BlockWithMeta bwm = new BlockWithMeta(worldObj.getBlock(x, y, z), worldObj.getBlockMetadata(x, y, z));
+							BlockWithMeta bwm = new BlockWithMeta(worldObj, x, y, z);
 							for (Entry<BlockWithMeta, RecipeEnergizer> recipe : EnergizerRecipeHandler.recipeList.entrySet()) {
 								if (recipe.getKey().equals(bwm)) {
 									currentRecipe = recipe.getValue();

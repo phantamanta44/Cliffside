@@ -1,17 +1,14 @@
 package io.github.phantamanta44.cliffside.proxy;
 
 import io.github.phantamanta44.cliffside.ModCliffside;
-import io.github.phantamanta44.cliffside.block.BlockOre;
 import io.github.phantamanta44.cliffside.block.CSBlocks;
+import io.github.phantamanta44.cliffside.ctm.CTMRenderer;
 import io.github.phantamanta44.cliffside.gui.container.GuiAlchemicalBurner;
 import io.github.phantamanta44.cliffside.gui.container.GuiDisintegrator;
 import io.github.phantamanta44.cliffside.gui.container.GuiLunarDistillery;
 import io.github.phantamanta44.cliffside.gui.container.GuiSmelter;
-import io.github.phantamanta44.cliffside.handler.ExplosiveEnergizationHandler;
 import io.github.phantamanta44.cliffside.handler.GuiHandler;
-import io.github.phantamanta44.cliffside.handler.NintendiumCraftHandler;
 import io.github.phantamanta44.cliffside.handler.WrenchHandler;
-import io.github.phantamanta44.cliffside.handler.ZfgBootHandler;
 import io.github.phantamanta44.cliffside.inventory.ContainerAlchemicalBurner;
 import io.github.phantamanta44.cliffside.inventory.ContainerDisintegrator;
 import io.github.phantamanta44.cliffside.inventory.ContainerLunarDistillery;
@@ -26,18 +23,16 @@ import io.github.phantamanta44.cliffside.tile.TileGlowstoneNode;
 import io.github.phantamanta44.cliffside.tile.TileGlowstoneStorage;
 import io.github.phantamanta44.cliffside.tile.TileLunarDistillery;
 import io.github.phantamanta44.cliffside.tile.TileSmelter;
-import io.github.phantamanta44.cliffside.util.BlockWithMeta;
-import io.github.phantamanta44.cliffside.worldgen.WorldGenSimple;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class CommonProxy {
+	
+	public static CTMRenderer ctmRenderer;
 
 	public void preInit(FMLPreInitializationEvent event) {
 		CSBlocks.init();
@@ -47,14 +42,9 @@ public class CommonProxy {
 
 	public void init(FMLInitializationEvent event) {
 		MasterRecipeManager.registerRecipes();
-		MinecraftForge.EVENT_BUS.register(new ExplosiveEnergizationHandler());
-		MinecraftForge.EVENT_BUS.register(new ZfgBootHandler());
 		MinecraftForge.EVENT_BUS.register(new WrenchHandler());
-		MinecraftForge.EVENT_BUS.register(new NintendiumCraftHandler());
 		NetworkRegistry.INSTANCE.registerGuiHandler(ModCliffside.instance, new GuiHandler());
 		registerGuis();
-		GameRegistry.registerWorldGenerator(new WorldGenSimple(new BlockWithMeta(CSBlocks.ore, BlockOre.MITHRIL), 0, new BlockWithMeta(Blocks.stone), 4, 18, 4, 4), 8);
-		GameRegistry.registerWorldGenerator(new WorldGenSimple(new BlockWithMeta(CSBlocks.ore, BlockOre.SILVER), 0, new BlockWithMeta(Blocks.stone), 4, 64, 10, 12), 8);
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {
