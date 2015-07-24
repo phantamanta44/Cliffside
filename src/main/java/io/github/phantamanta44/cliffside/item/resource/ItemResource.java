@@ -176,7 +176,7 @@ public class ItemResource extends ItemModSubs {
 			}
 			if ((eff & 0b1000) != 0) {
 				effectMsg.add(StatCollector.translateToLocal(LangConstants.MSEFF_POTION));
-				player.addPotionEffect(new PotionEffect(rand.nextInt(24), rand.nextInt(100) + 20, rand.nextInt(12)));
+				player.addPotionEffect(new PotionEffect(1 + rand.nextInt(23), rand.nextInt(100) + 20, rand.nextInt(12)));
 			}
 			if ((eff & 0b10000) != 0) {
 				effectMsg.add(StatCollector.translateToLocal(LangConstants.MSEFF_GUARDIAN));
