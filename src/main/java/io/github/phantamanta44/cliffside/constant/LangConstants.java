@@ -9,9 +9,15 @@ public class LangConstants {
 	
 	public static final String ZFG_BOOTS_DESC1 = DESC_KEY + "zfg0";
 	public static final String ZFG_BOOTS_DESC2 = DESC_KEY + "zfg1";
+	public static final String NINTENDIUM_DESC = DESC_KEY + "wiimote";
 	public static final String UNBREAKABLE_DESC = DESC_KEY + "unbreakable";
 	public static final String MAGICAL_DESC = DESC_KEY + "magical";
 	public static final String CREATIVE_DESC = DESC_KEY + "creative";
+	public static final String WRENCH_DESC = DESC_KEY + "wrench";
+	public static final String READER_DESC = DESC_KEY + "lumenReader";
+	public static final String INGOT_MEAT_DESC = DESC_KEY + "meatIngot";
+	public static final String GEAR_MEAT_DESC = DESC_KEY + "meatGear";
+	public static final String MS_DESC = DESC_KEY + "moonshine";
 	
 	public static final String CREATIVE_TAB_NAME = "tabCsAlchemy";
 	public static final String CREATIVE_NODE_TAB_NAME = "tabCsAlchemyNodes";

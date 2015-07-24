@@ -166,8 +166,14 @@ csalchemy.container.lunarDistill=Lunar Distillery
 csalchemy.itemdesc.zfg0="No, no, no, no," said the speedrunner,
 csalchemy.itemdesc.zfg1=as he realized his last-second mistake.
 csalchemy.itemdesc.unbreakable=Unbreakable
+csalchemy.itemdesc.wiimote=Known for shattering televisions.
 csalchemy.itemdesc.magical=Magical
 csalchemy.itemdesc.creative=Creative Only
+csalchemy.itemdesc.wrench=Yet Another Generic Wrench™
+csalchemy.itemdesc.lumenReader=You're my faithful student.
+csalchemy.itemdesc.meatIngot=Somewhat like a chocolate bar.
+csalchemy.itemdesc.meatGear=High iron content.
+csalchemy.itemdesc.moonshine=Tipsy.
 
 csalchemy.mseffect.wither=You suddenly feel sick to the stomach.
 csalchemy.mseffect.regen=You feel your body repairing its wounds.

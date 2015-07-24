@@ -1,9 +1,14 @@
 package io.github.phantamanta44.cliffside.item.resource;
 
+import java.util.List;
+
 import io.github.phantamanta44.cliffside.constant.ItemConstants;
+import io.github.phantamanta44.cliffside.constant.LangConstants;
 import io.github.phantamanta44.cliffside.item.ItemModSubs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 public class ItemIngot extends ItemModSubs {
 
@@ -24,6 +29,15 @@ public class ItemIngot extends ItemModSubs {
 			return EnumRarity.uncommon;
 		default:
 			return EnumRarity.common;
+		}
+	}
+	
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean someRandomArg) {
+		switch (stack.getItemDamage()) {
+		case NINTENDIUM:
+			info.add(StatCollector.translateToLocal(LangConstants.NINTENDIUM_DESC));
+			break;
 		}
 	}
 

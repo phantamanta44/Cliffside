@@ -139,6 +139,21 @@ public class ItemResource extends ItemModSubs {
 		}
 	}
 	
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean someRandomArg) {
+		switch (stack.getItemDamage()) {
+		case INGOT_MEAT:
+			info.add(StatCollector.translateToLocal(LangConstants.INGOT_MEAT_DESC));
+			break;
+		case GEAR_MEAT:
+			info.add(StatCollector.translateToLocal(LangConstants.GEAR_MEAT_DESC));
+			break;
+		case BOTTLE_MS:
+			info.add(StatCollector.translateToLocal(LangConstants.MS_DESC));
+			break;
+		}
+	}
+	
 	public static void doMoonshineStuff(EntityPlayer player) {
 		if (!player.worldObj.isRemote) {
 			Random rand = player.getRNG();
