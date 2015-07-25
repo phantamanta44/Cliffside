@@ -31,7 +31,7 @@ import net.minecraftforge.common.ChestGenHooks;
 
 public class ItemResource extends ItemModSubs {
 
-	public static final int DOUGH = 0, DUST_MEAT = 1, INGOT_MEAT = 2, GEAR_ALCHEM = 3, GEAR_CATAL = 4, GEAR_MITHRIL = 5, GEAR_QS = 6, GEAR_MEAT = 7, BOTTLE_MS = 8; 
+	public static final int DOUGH = 0, DUST_MEAT = 1, INGOT_MEAT = 2, GEAR_ALCHEM = 3, GEAR_CATAL = 4, GEAR_MITHRIL = 5, GEAR_QS = 6, GEAR_MEAT = 7, BOTTLE_MS = 8, STICK_COND = 9, STICK_OBS = 10; 
 	public static final ChatStyle EFFECT_STYLE = new ChatStyle();
 	
 	static {
@@ -40,7 +40,7 @@ public class ItemResource extends ItemModSubs {
 	}
 	
 	public ItemResource() {
-		super(9);
+		super(11);
 		setUnlocalizedName(ItemConstants.RESOURCE_ITEM_NAME);
 	}
 	
@@ -121,8 +121,10 @@ public class ItemResource extends ItemModSubs {
 	public EnumRarity getRarity(ItemStack stack) {
 		switch (stack.getItemDamage()) {
 		case GEAR_QS:
+		case STICK_COND:
 			return EnumRarity.uncommon;
 		case BOTTLE_MS:
+		case STICK_OBS:
 			return EnumRarity.rare;
 		default:
 			return EnumRarity.common;

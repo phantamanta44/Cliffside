@@ -46,6 +46,7 @@ public class OreDictHandler {
 		OreDictionary.registerOre("gearMithril", new ItemStack(CSItems.matResource, 1, ItemResource.GEAR_MITHRIL));
 		OreDictionary.registerOre("gearQuicksilver", new ItemStack(CSItems.matResource, 1, ItemResource.GEAR_QS));
 		OreDictionary.registerOre("gearMeat", new ItemStack(CSItems.matResource, 1, ItemResource.GEAR_MEAT));
+		OreDictionary.registerOre("stickObsidian", new ItemStack(CSItems.matResource, 1, ItemResource.STICK_COND));
 		OreDictionary.registerOre("blockGlassHardened", new ItemStack(CSBlocks.matGlass, 1, BlockTransparent.QS_GLASS));
 	}
 	

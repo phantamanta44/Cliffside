@@ -57,6 +57,12 @@ public class MasterRecipeManager {
 		// Meat ingot
 		addSmelting(new ItemStack(CSItems.matResource, 1, ItemResource.INGOT_MEAT), new ItemStack(CSItems.matResource, 1, ItemResource.DUST_MEAT), 4200);
 		
+		// Magic-conductive rod
+		addOreDictRecipe(new ItemStack(CSItems.matResource, 2, ItemResource.STICK_COND), "q", "q", 'q', "ingotQuicksilver");
+		
+		// Abyssal rod
+		addOreDictRecipe(new ItemStack(CSItems.matResource, 1, ItemResource.STICK_OBS), "o", "o", "d", 'o', new ItemStack(CSBlocks.alchemBlk, 1, BlockAlchemical.ETCHED_OBS), 'd', "gemDiamond");
+		
 		// Alchemists' wrench
 		addOreDictRecipe(new ItemStack(CSItems.wrench, 1, ItemWrench.WRENCH), "a a", " i ", " a ", 'a', "ingotAlchemical", 'i', "ingotSilver");
 		addOreDictRecipe(new ItemStack(CSItems.wrench, 1, ItemWrench.WRENCH), "a a", " g ", " a ", 'a', "ingotAlchemical", 'g', "ingotGold");
