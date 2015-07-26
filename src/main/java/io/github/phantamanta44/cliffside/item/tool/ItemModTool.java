@@ -33,9 +33,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemModTool extends ItemTool {
 
-	private static final Set axeSet = Sets.newHashSet(new Block[] {Blocks.planks, Blocks.bookshelf, Blocks.log, Blocks.log2, Blocks.chest, Blocks.pumpkin, Blocks.lit_pumpkin});
-	private static final Set pickSet = Sets.newHashSet(new Block[] {Blocks.cobblestone, Blocks.double_stone_slab, Blocks.stone_slab, Blocks.stone, Blocks.sandstone, Blocks.mossy_cobblestone, Blocks.iron_ore, Blocks.iron_block, Blocks.coal_ore, Blocks.gold_block, Blocks.gold_ore, Blocks.diamond_ore, Blocks.diamond_block, Blocks.ice, Blocks.netherrack, Blocks.lapis_ore, Blocks.lapis_block, Blocks.redstone_ore, Blocks.lit_redstone_ore, Blocks.rail, Blocks.detector_rail, Blocks.golden_rail, Blocks.activator_rail});
-	private static final Set spadeSet = Sets.newHashSet(new Block[] {Blocks.grass, Blocks.dirt, Blocks.sand, Blocks.gravel, Blocks.snow_layer, Blocks.snow, Blocks.clay, Blocks.farmland, Blocks.soul_sand, Blocks.mycelium});
+	private static final Set axeSet = Sets.newHashSet(new Material[] {Material.wood, Material.leaves, Material.vine, Material.circuits, Material.cactus, Material.gourd});
+	private static final Set pickSet = Sets.newHashSet(new Material[] {Material.rock, Material.iron, Material.glass, Material.piston, Material.anvil, Material.circuits});
+	private static final Set spadeSet = Sets.newHashSet(new Material[] {Material.grass, Material.ground, Material.sand, Material.snow, Material.craftedSnow, Material.clay});
 	private static final Set emptySet = Sets.newHashSet();
 
 	protected ToolType type;
@@ -104,34 +104,36 @@ public class ItemModTool extends ItemTool {
 	}
 	
 	@Override
-	public float func_150893_a(ItemStack tool, Block block) {
+	public int getHarvestLevel(ItemStack stack, String toolClass) {
+		if (toolClass == type.toolClass)
+			return toolMaterial.getHarvestLevel();
+		return -1;
+	}
+	
+	@Override
+	public float getDigSpeed(ItemStack tool, Block block, int meta) {
 		switch (type) {
-		case AXE:
-			return block.getMaterial() != Material.wood && block.getMaterial() != Material.plants && block.getMaterial() != Material.vine ? super.func_150893_a(tool, block) : this.efficiencyOnProperMaterial;
-		case PICKAXE:
-			return block.getMaterial() != Material.iron && block.getMaterial() != Material.anvil && block.getMaterial() != Material.rock ? super.func_150893_a(tool, block) : this.efficiencyOnProperMaterial;
 		case SWORD:
 			if (block == Blocks.web)
 				return 15.0F;
 			Material material = block.getMaterial();
 			return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves && material != Material.gourd ? 1.0F : 1.5F;
 		default:
-			return super.func_150893_a(tool, block);
+			if (type.toolClass.equals(block.getHarvestTool(meta)))
+				return toolMaterial.getEfficiencyOnProperMaterial();
+			if (type.effectiveAgainst.contains(block.getMaterial()) && toolMaterial.getHarvestLevel() > block.getHarvestLevel(meta))
+				return toolMaterial.getEfficiencyOnProperMaterial();
+			return super.getDigSpeed(tool, block, meta);
 		}
 	}
 	
 	@Override
-	public boolean func_150897_b(Block block) {
-		switch (type) {
-		case PICKAXE:
-			return block == Blocks.obsidian ? this.toolMaterial.getHarvestLevel() == 3 : (block != Blocks.diamond_block && block != Blocks.diamond_ore ? (block != Blocks.emerald_ore && block != Blocks.emerald_block ? (block != Blocks.gold_block && block != Blocks.gold_ore ? (block != Blocks.iron_block && block != Blocks.iron_ore ? (block != Blocks.lapis_block && block != Blocks.lapis_ore ? (block != Blocks.redstone_ore && block != Blocks.lit_redstone_ore ? (block.getMaterial() == Material.rock ? true : (block.getMaterial() == Material.iron ? true : block.getMaterial() == Material.anvil)) : this.toolMaterial.getHarvestLevel() >= 2) : this.toolMaterial.getHarvestLevel() >= 1) : this.toolMaterial.getHarvestLevel() >= 1) : this.toolMaterial.getHarvestLevel() >= 2) : this.toolMaterial.getHarvestLevel() >= 2) : this.toolMaterial.getHarvestLevel() >= 2);
-		case SPADE:
-			return block == Blocks.snow_layer ? true : block == Blocks.snow;
-		case SWORD:
+	public boolean canHarvestBlock(Block block, ItemStack tool) {
+		if (type == ToolType.SWORD)
 			return block == Blocks.web;
-		default:
-			return super.func_150897_b(block);
-		}
+		if (type.effectiveAgainst.contains(block.getMaterial()))
+			return true;
+		return super.canHarvestBlock(block, tool);
 	}
 	
 	@Override
@@ -200,19 +202,21 @@ public class ItemModTool extends ItemTool {
 	
 	public static enum ToolType {
 		
-		AXE(3F, axeSet),
-		PICKAXE(2F, pickSet),
-		SPADE(1F, spadeSet),
-		SWORD(4F, emptySet),
-		HOE(0F, emptySet),
-		NONE(0F, emptySet);
+		AXE(3F, axeSet, "axe"),
+		PICKAXE(2F, pickSet, "pickaxe"),
+		SPADE(1F, spadeSet, "shovel"),
+		SWORD(4F, emptySet, "sword"),
+		HOE(0F, emptySet, "hoe"),
+		NONE(0F, emptySet, "none");
 		
 		public final float dmgBoost;
 		public final Set effectiveAgainst;
+		public final String toolClass;
 		
-		private ToolType(float dmg, Set effective) {
+		private ToolType(float dmg, Set effective, String clazz) {
 			dmgBoost = dmg;
 			effectiveAgainst = effective;
+			toolClass = clazz;
 		}
 		
 	}

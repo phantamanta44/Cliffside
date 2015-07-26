@@ -18,7 +18,7 @@ public class CSMaterialTypes {
 	public static ToolMaterial toolsAlchemical = EnumHelper.addToolMaterial("ALCHEMICAL", 5, 649, 8.0F, 2.5F, 25).setRepairItem(new ItemStack(CSItems.matIngot, 1, ItemIngot.ALCHEM));
 	public static ToolMaterial toolsCatalytical = EnumHelper.addToolMaterial("CATALYTICAL", 6, 849, 12.0F, 3.0F, 26).setRepairItem(new ItemStack(CSItems.matIngot, 1, ItemIngot.CATAL));
 	public static ToolMaterial toolsMithril = EnumHelper.addToolMaterial("MITHRIL", 4, 419, 7.0F, 2.0F, 34).setRepairItem(new ItemStack(CSItems.matIngot, 1, ItemIngot.MITHRIL));
-	public static ToolMaterial toolsNintendium = EnumHelper.addToolMaterial("NINTENDIUM", 8, 9000, 14.0F, 3.5F, 16);
-	public static ToolMaterial toolsNintendiumEmpowered = EnumHelper.addToolMaterial("NINTEMPOWERED", 8, 9000, 16.0F, 4.5F, 42);
+	public static ToolMaterial toolsNintendium = EnumHelper.addToolMaterial("NINTENDIUM", 8, 9000, 14.0F, 5F, 16);
+	public static ToolMaterial toolsNintendiumEmpowered = EnumHelper.addToolMaterial("NINTEMPOWERED", 8, 9000, 20.0F, 11F, 42);
 	
 }
