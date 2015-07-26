@@ -65,7 +65,7 @@ public class ItemModSword extends ItemSword {
 		if (stack.getItem().isDamageable()) {
 			float damagePercent = (float)(stack.getMaxDamage() - stack.getItemDamage()) / (float)stack.getMaxDamage();
 			String color = (damagePercent == 1F ? EnumChatFormatting.AQUA : (damagePercent > 0.7F ? EnumChatFormatting.GREEN : (damagePercent > 0.5F ? EnumChatFormatting.YELLOW : (damagePercent > 0.2F ? EnumChatFormatting.GOLD : EnumChatFormatting.DARK_RED)))).toString();
-			info.add(String.format("Durability: %s%d%%", color, (int)(damagePercent * 100)));
+			info.add(String.format("Durability: %s%d%%", color, (int)Math.max(damagePercent * 100, 1)));
 		}
 		if (tooltip != null && !tooltip.isEmpty())
 			info.add(StatCollector.translateToLocal(tooltip));
