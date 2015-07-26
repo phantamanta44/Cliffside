@@ -33,12 +33,15 @@ public class OreDictHandler {
 		OreDictionary.registerOre("nuggetNintendium", new ItemStack(CSItems.matNugget, 1, ItemNugget.NINTENDIUM));
 		OreDictionary.registerOre("nuggetQuicksilver", new ItemStack(CSItems.matNugget, 1, ItemNugget.QS));
 		OreDictionary.registerOre("nuggetSilver", new ItemStack(CSItems.matNugget, 1, ItemNugget.SILVER));
+		OreDictionary.registerOre("nuggetIron", new ItemStack(CSItems.matNugget, 1, ItemNugget.IRON));
 		OreDictionary.registerOre("dustAlchemical", new ItemStack(CSItems.matDust, 1, ItemDust.ALCHEM));
 		OreDictionary.registerOre("dustCatalyst", new ItemStack(CSItems.matDust, 1, ItemDust.CATAL));
 		OreDictionary.registerOre("dustMithril", new ItemStack(CSItems.matDust, 1, ItemDust.MITHRIL));
 		OreDictionary.registerOre("dustNintendium", new ItemStack(CSItems.matDust, 1, ItemDust.NINTENDIUM));
 		OreDictionary.registerOre("dustQuicksilver", new ItemStack(CSItems.matDust, 1, ItemDust.QS));
 		OreDictionary.registerOre("dustSilver", new ItemStack(CSItems.matDust, 1, ItemDust.SILVER));
+		OreDictionary.registerOre("dustIron", new ItemStack(CSItems.matDust, 1, ItemDust.IRON));
+		OreDictionary.registerOre("dustGold", new ItemStack(CSItems.matDust, 1, ItemDust.GOLD));
 		OreDictionary.registerOre("oreSilver", new ItemStack(CSBlocks.ore, 1, BlockOre.SILVER));
 		OreDictionary.registerOre("oreMithril", new ItemStack(CSBlocks.ore, 1, BlockOre.MITHRIL));
 		OreDictionary.registerOre("gearAlchemical", new ItemStack(CSItems.matResource, 1, ItemResource.GEAR_ALCHEM));
