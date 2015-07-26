@@ -13,11 +13,11 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.EnumAction;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -91,6 +91,11 @@ public class ItemModTool extends ItemTool {
 	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean someRandomArg) {
+		if (stack.getItem().isDamageable()) {
+			float damagePercent = (float)(stack.getMaxDamage() - stack.getItemDamage()) / (float)stack.getMaxDamage();
+			String color = (damagePercent == 1F ? EnumChatFormatting.AQUA : (damagePercent > 0.7F ? EnumChatFormatting.GREEN : (damagePercent > 0.5F ? EnumChatFormatting.YELLOW : (damagePercent > 0.2F ? EnumChatFormatting.GOLD : EnumChatFormatting.DARK_RED)))).toString();
+			info.add(String.format("Durability: %s%d%%", color, (int)(damagePercent * 100)));
+		}
 		if (tooltip != null && !tooltip.isEmpty())
 			info.add(StatCollector.translateToLocal(tooltip));
 	}
@@ -112,63 +117,27 @@ public class ItemModTool extends ItemTool {
 	
 	@Override
 	public float getDigSpeed(ItemStack tool, Block block, int meta) {
-		switch (type) {
-		case SWORD:
-			if (block == Blocks.web)
-				return 15.0F;
-			Material material = block.getMaterial();
-			return material != Material.plants && material != Material.vine && material != Material.coral && material != Material.leaves && material != Material.gourd ? 1.0F : 1.5F;
-		default:
-			if (type.toolClass.equals(block.getHarvestTool(meta)))
-				return toolMaterial.getEfficiencyOnProperMaterial();
-			if (type.effectiveAgainst.contains(block.getMaterial()) && toolMaterial.getHarvestLevel() > block.getHarvestLevel(meta))
-				return toolMaterial.getEfficiencyOnProperMaterial();
-			return super.getDigSpeed(tool, block, meta);
-		}
+		if (type.toolClass.equals(block.getHarvestTool(meta)))
+			return toolMaterial.getEfficiencyOnProperMaterial();
+		if (type.effectiveAgainst.contains(block.getMaterial()) && toolMaterial.getHarvestLevel() > block.getHarvestLevel(meta))
+			return toolMaterial.getEfficiencyOnProperMaterial();
+		return super.getDigSpeed(tool, block, meta);
 	}
 	
 	@Override
 	public boolean canHarvestBlock(Block block, ItemStack tool) {
-		if (type == ToolType.SWORD)
-			return block == Blocks.web;
 		if (type.effectiveAgainst.contains(block.getMaterial()))
 			return true;
 		return super.canHarvestBlock(block, tool);
 	}
 	
 	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (type == ToolType.SWORD)
-			player.setItemInUse(stack, getMaxItemUseDuration(stack));
-		return stack;
-	}
-	
-	@Override
-	public EnumAction getItemUseAction(ItemStack stack) {
-		return type == ToolType.SWORD ? EnumAction.block : EnumAction.none;
-	}
-	
-	@Override
-	public int getMaxItemUseDuration(ItemStack p_77626_1_) {
-		return type == ToolType.SWORD ? 72000 : 0;
-	}
-	
-	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase player) {
-		if (type == ToolType.SWORD) {
-			if ((double)block.getBlockHardness(world, x, y, z) != 0.0D)
-				stack.damageItem(2, player);
-			return true;
-		}
-		return super.onBlockDestroyed(stack, world, block, x, y, z, player);
-	}
-	
-	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase player) {
-		stack.damageItem(type == ToolType.SWORD ? 1 : 2, player);
+		stack.damageItem(2, player);
 		return true;
 	}
 	
+	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int face, float subX, float subY, float subZ)
 	{
 		if (type != ToolType.HOE)
@@ -200,12 +169,16 @@ public class ItemModTool extends ItemTool {
 		return false;
 	}
 	
+	@Override
+	public boolean isItemTool(ItemStack stack) {
+		return true;
+	}
+	
 	public static enum ToolType {
 		
 		AXE(3F, axeSet, "axe"),
 		PICKAXE(2F, pickSet, "pickaxe"),
 		SPADE(1F, spadeSet, "shovel"),
-		SWORD(4F, emptySet, "sword"),
 		HOE(0F, emptySet, "hoe"),
 		NONE(0F, emptySet, "none");
 		

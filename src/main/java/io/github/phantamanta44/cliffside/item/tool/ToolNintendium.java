@@ -14,6 +14,11 @@ public class ToolNintendium extends ItemModTool {
 		setMaxDamage(-1);
 	}
 	
+	@Override
+	public boolean isDamageable() {
+		return false;
+	}
+	
 	public static class ItemNintendiumAxe extends ToolNintendium {
 
 		public ItemNintendiumAxe() {
@@ -41,11 +46,19 @@ public class ToolNintendium extends ItemModTool {
 		
 	}
 	
-	public static class ItemNintendiumSword extends ToolNintendium {
+	public static class ItemNintendiumSword extends ItemModSword {
 
 		public ItemNintendiumSword() {
-			super(ToolType.SWORD);
+			super(CSMaterialTypes.toolsNintendium);
 			setUnlocalizedName(ItemConstants.NINT_SWORD_NAME);
+			setRarity(EnumRarity.epic);
+			setTooltip(LangConstants.UNBREAKABLE_DESC);
+			setMaxDamage(-1);
+		}
+		
+		@Override
+		public boolean isDamageable() {
+			return false;
 		}
 		
 	}

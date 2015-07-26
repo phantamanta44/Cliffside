@@ -38,11 +38,12 @@ public class ToolMithril extends ItemModTool {
 		
 	}
 	
-	public static class ItemMithrilSword extends ToolMithril {
+	public static class ItemMithrilSword extends ItemModSword {
 
 		public ItemMithrilSword() {
-			super(ToolType.SWORD);
+			super(CSMaterialTypes.toolsMithril);
 			setUnlocalizedName(ItemConstants.MITHRIL_SWORD_NAME);
+			setTooltip(LangConstants.MAGICAL_DESC);
 		}
 		
 	}

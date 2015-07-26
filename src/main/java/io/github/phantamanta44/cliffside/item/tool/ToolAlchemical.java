@@ -36,10 +36,10 @@ public class ToolAlchemical extends ItemModTool {
 		
 	}
 	
-	public static class ItemAlchemicalSword extends ToolAlchemical {
+	public static class ItemAlchemicalSword extends ItemModSword {
 
 		public ItemAlchemicalSword() {
-			super(ToolType.SWORD);
+			super(CSMaterialTypes.toolsAlchemical);
 			setUnlocalizedName(ItemConstants.ALCHEM_SWORD_NAME);
 		}
 		

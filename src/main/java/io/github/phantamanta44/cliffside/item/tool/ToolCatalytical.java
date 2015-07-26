@@ -36,10 +36,10 @@ public class ToolCatalytical extends ItemModTool {
 		
 	}
 	
-	public static class ItemCatalyticalSword extends ToolCatalytical {
+	public static class ItemCatalyticalSword extends ItemModSword {
 
 		public ItemCatalyticalSword() {
-			super(ToolType.SWORD);
+			super(CSMaterialTypes.toolsCatalytical);
 			setUnlocalizedName(ItemConstants.CATAL_SWORD_NAME);
 		}
 		

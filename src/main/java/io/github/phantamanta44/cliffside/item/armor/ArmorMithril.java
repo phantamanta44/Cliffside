@@ -17,6 +17,7 @@ public class ArmorMithril extends ItemModArmor {
 	public ArmorMithril(int type) {
 		super(type, CSMaterialTypes.armorMithril);
 		armorSetName = "mithril";
+		setTooltip(LangConstants.MAGICAL_DESC);
 	}
 	
 	@Override
@@ -24,11 +25,6 @@ public class ArmorMithril extends ItemModArmor {
 		if (b.getItem().equals(CSItems.matIngot) && b.getItemDamage() == ItemIngot.MITHRIL)
 			return true;
 		return super.getIsRepairable(a, b);
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List info, boolean someRandomArg) {
-		info.add(StatCollector.translateToLocal(LangConstants.MAGICAL_DESC));
 	}
 	
 	public static class ItemMithrilHelmet extends ArmorMithril {
