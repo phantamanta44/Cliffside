@@ -14,8 +14,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.ISpecialArmor;
+import thaumcraft.api.IRunicArmor;
+import cpw.mods.fml.common.Optional;
 
-public class ItemZFGBoots extends ItemModArmor implements ISpecialArmor {
+@Optional.Interface(modid="Thaumcraft", iface="thaumcraft.api.IRunicArmor")
+public class ItemZFGBoots extends ItemModArmor implements ISpecialArmor, IRunicArmor {
 
 	public ItemZFGBoots() {
 		super(GlobalConstants.ARMOR_BOOTS, CSMaterialTypes.armorCatalytical);
@@ -66,6 +69,12 @@ public class ItemZFGBoots extends ItemModArmor implements ISpecialArmor {
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
 		return EnumRarity.epic;
+	}
+	
+	@Override
+	@Optional.Method(modid="Thaumcraft")
+	public int getRunicCharge(ItemStack itemstack) {
+		return 0;
 	}
 	
 }

@@ -6,8 +6,11 @@ import io.github.phantamanta44.cliffside.item.CSItems;
 import io.github.phantamanta44.cliffside.item.resource.ItemIngot;
 import io.github.phantamanta44.cliffside.material.CSMaterialTypes;
 import net.minecraft.item.ItemStack;
+import thaumcraft.api.IRunicArmor;
+import cpw.mods.fml.common.Optional;
 
-public class ArmorCatalytical extends ItemModArmor {
+@Optional.Interface(modid="Thaumcraft", iface="api.thaumcraft.IRunicArmor")
+public class ArmorCatalytical extends ItemModArmor implements IRunicArmor {
 	
 	public ArmorCatalytical(int type) {
 		super(type, CSMaterialTypes.armorCatalytical);
@@ -55,6 +58,12 @@ public class ArmorCatalytical extends ItemModArmor {
 			setUnlocalizedName(ItemConstants.CATAL_BOOTS_NAME);
 		}
 		
+	}
+
+	@Override
+	@Optional.Method(modid="Thaumcraft")
+	public int getRunicCharge(ItemStack itemstack) {
+		return 0;
 	}
 	
 }

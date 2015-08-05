@@ -10,8 +10,12 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.ISpecialArmor;
+import thaumcraft.api.IRunicArmor;
+import thaumcraft.api.IWarpingGear;
+import cpw.mods.fml.common.Optional;
 
-public class ArmorNintendium extends ItemModArmor implements ISpecialArmor {
+@Optional.InterfaceList({@Optional.Interface(modid="Thaumcraft", iface="thaumcraft.api.IRunicArmor"), @Optional.Interface(modid="Thaumcraft", iface="thaumcraft.api.IWarpingGear")})
+public class ArmorNintendium extends ItemModArmor implements ISpecialArmor, IRunicArmor, IWarpingGear {
 	
 	public ArmorNintendium(int type) {
 		super(type, CSMaterialTypes.armorNintendium);
@@ -76,6 +80,18 @@ public class ArmorNintendium extends ItemModArmor implements ISpecialArmor {
 			setUnlocalizedName(ItemConstants.NINT_BOOTS_NAME);
 		}
 		
+	}
+
+	@Override
+	@Optional.Method(modid="Thaumcraft")
+	public int getWarp(ItemStack itemstack, EntityPlayer player) {
+		return 1;
+	}
+
+	@Override
+	@Optional.Method(modid="Thaumcraft")
+	public int getRunicCharge(ItemStack itemstack) {
+		return 0;
 	}
 	
 }

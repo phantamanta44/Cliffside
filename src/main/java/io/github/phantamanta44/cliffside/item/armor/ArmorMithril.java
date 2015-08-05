@@ -1,7 +1,5 @@
 package io.github.phantamanta44.cliffside.item.armor;
 
-import java.util.List;
-
 import io.github.phantamanta44.cliffside.constant.GlobalConstants;
 import io.github.phantamanta44.cliffside.constant.ItemConstants;
 import io.github.phantamanta44.cliffside.constant.LangConstants;
@@ -10,9 +8,13 @@ import io.github.phantamanta44.cliffside.item.resource.ItemIngot;
 import io.github.phantamanta44.cliffside.material.CSMaterialTypes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import thaumcraft.api.IRunicArmor;
+import thaumcraft.api.IVisDiscountGear;
+import thaumcraft.api.aspects.Aspect;
+import cpw.mods.fml.common.Optional;
 
-public class ArmorMithril extends ItemModArmor {
+@Optional.InterfaceList({@Optional.Interface(modid="Thaumcraft", iface="thaumcraft.api.IRunicArmor"), @Optional.Interface(modid="Thaumcraft", iface="thaumcraft.api.IVisDiscountGear")})
+public class ArmorMithril extends ItemModArmor implements IRunicArmor, IVisDiscountGear {
 	
 	public ArmorMithril(int type) {
 		super(type, CSMaterialTypes.armorMithril);
@@ -61,6 +63,24 @@ public class ArmorMithril extends ItemModArmor {
 			setUnlocalizedName(ItemConstants.MITHRIL_BOOTS_NAME);
 		}
 		
+	}
+
+	@Override
+	@Optional.Method(modid="Thaumcraft")
+	public int getVisDiscount(ItemStack stack, EntityPlayer player, Aspect aspect) {
+		if (stack.getItem().equals(CSItems.mithrilChestplate))
+			return 4;
+		if (stack.getItem().equals(CSItems.mithrilLeggings))
+			return 3;
+		if (stack.getItem().equals(CSItems.mithrilBoots))
+			return 2;
+		return 2;
+	}
+
+	@Override
+	@Optional.Method(modid="Thaumcraft")
+	public int getRunicCharge(ItemStack itemstack) {
+		return 0;
 	}
 	
 }

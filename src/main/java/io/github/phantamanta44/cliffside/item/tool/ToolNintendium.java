@@ -3,9 +3,14 @@ package io.github.phantamanta44.cliffside.item.tool;
 import io.github.phantamanta44.cliffside.constant.ItemConstants;
 import io.github.phantamanta44.cliffside.constant.LangConstants;
 import io.github.phantamanta44.cliffside.material.CSMaterialTypes;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemStack;
+import thaumcraft.api.IWarpingGear;
+import cpw.mods.fml.common.Optional;
 
-public class ToolNintendium extends ItemModTool {
+@Optional.Interface(modid="Thaumcraft", iface="api.thaumcraft.IWarpingGear")
+public class ToolNintendium extends ItemModTool implements IWarpingGear {
 
 	public ToolNintendium(ToolType t) {
 		super(t, CSMaterialTypes.toolsNintendium);
@@ -70,6 +75,12 @@ public class ToolNintendium extends ItemModTool {
 			setUnlocalizedName(ItemConstants.NINT_HOE_NAME);
 		}
 		
+	}
+
+	@Override
+	@Optional.Method(modid="Thaumcraft")
+	public int getWarp(ItemStack itemstack, EntityPlayer player) {
+		return 2;
 	}
 	
 }
