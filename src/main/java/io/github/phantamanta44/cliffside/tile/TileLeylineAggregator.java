@@ -5,10 +5,13 @@ import io.github.phantamanta44.cliffside.block.CSBlocks;
 import io.github.phantamanta44.cliffside.tile.base.IActiveMachine;
 import io.github.phantamanta44.cliffside.tile.base.IDebuggable;
 import io.github.phantamanta44.cliffside.tile.base.IDirectional;
+import io.github.phantamanta44.cliffside.tile.base.ILumenStorage.ILumenAcceptor;
 import io.github.phantamanta44.cliffside.tile.base.ILumenStorage.ILumenProvider;
 import io.github.phantamanta44.cliffside.tile.base.IWrenchable;
 
 import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.Set;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -130,6 +133,31 @@ public class TileLeylineAggregator extends TileEntity implements IDirectional, I
 				lumenBuffer++;
 			}
 			lumenBuffer = Math.max(0, Math.min(lumenBuffer, LUMEN_BUFFER_SIZE));
+			
+			if (lumenBuffer >= LUMEN_PACKET_SIZE) {
+				Set<ILumenAcceptor> acceptors = new HashSet<>();
+				for (int i = 0; i < 4 && acceptors.isEmpty(); i++) {
+					int xOrig = xCoord - i, yOrig = yCoord - i, zOrig = zCoord - i;
+					int xTar = xCoord + i, yTar = yCoord + i, zTar = zCoord + i;
+					for (int x = xOrig; x <= xTar; x++) {
+						for (int y = yOrig; y <= yTar; y++) {
+							for (int z = zOrig; z <= zTar; z++) {
+								TileEntity te;
+								if ((te = worldObj.getTileEntity(x, y, z)) != null) {
+									if (te instanceof ILumenAcceptor && ((ILumenAcceptor)te).canAcceptEnergy(LUMEN_PACKET_SIZE, this))
+										acceptors.add((ILumenAcceptor)te);
+								}
+							}
+						}
+					}
+				}
+				if (!acceptors.isEmpty()) {
+					int split = (int)Math.floor((float)LUMEN_PACKET_SIZE / (float)acceptors.size());
+					for (ILumenAcceptor acceptor : acceptors)
+						acceptor.acceptEnergy(split, this);
+					lumenBuffer -= LUMEN_PACKET_SIZE;
+				}
+			}
 		}
 	}
 	

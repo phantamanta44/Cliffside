@@ -24,6 +24,7 @@ import io.github.phantamanta44.cliffside.tile.TileDisintegrator;
 import io.github.phantamanta44.cliffside.tile.TileGlowstoneEnergizer;
 import io.github.phantamanta44.cliffside.tile.TileGlowstoneNode;
 import io.github.phantamanta44.cliffside.tile.TileGlowstoneStorage;
+import io.github.phantamanta44.cliffside.tile.TileLeylineAggregator;
 import io.github.phantamanta44.cliffside.tile.TileLunarDistillery;
 import io.github.phantamanta44.cliffside.tile.TileSmelter;
 import net.minecraft.tileentity.TileEntity;
@@ -77,6 +78,7 @@ public class CommonProxy {
 		addTEMapping(TileGlowstoneNode.class);
 		addTEMapping(TileGlowstoneStorage.class);
 		addTEMapping(TileSmelter.class);
+		addTEMapping(TileLeylineAggregator.class);
 		addTEMapping(TileLunarDistillery.class);
 	}
 	
